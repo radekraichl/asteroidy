@@ -20,18 +20,29 @@ var speed: float
 var target_direction: Vector2 = Vector2.RIGHT
 var target_speed: float
 
-var timer: Timer
 var missile_impact: PackedScene = preload("res://scenes/projectile/projectile_impact.tscn")
+
+var _movement_timer: Timer = Timer.new()
+var _shooting_timer: Timer = Timer.new()
+var _start_movement_timer = _start_random_timer.bind(_movement_timer, 2, 4)
+var _start_shooting_timer = _start_random_timer.bind(_shooting_timer, 1, 1)
 
 func _ready() -> void:
 	explosion.visible = false
 	speed = speed_range.x
 	target_speed = speed_range.x
-	timer = Timer.new()
-	timer.one_shot = true
-	timer.timeout.connect(_on_ufo_tick)
-	add_child(timer)
-	_start_timer()
+
+	# setup movement timer
+	_movement_timer.one_shot = true
+	_movement_timer.timeout.connect(_on_ufo_movement_tick)
+	add_child(_movement_timer)
+	_start_movement_timer.call()
+
+	# setup shooting timer
+	_shooting_timer.one_shot = true
+	_shooting_timer.timeout.connect(_on_ufo_shooting_tick)
+	add_child(_shooting_timer)
+	_start_shooting_timer.call()
 
 	# helath callback
 	health.died.connect(_on_died)
@@ -40,8 +51,7 @@ func _ready() -> void:
 	# shield deactivated callback
 	_shield.on_deactivated = _on_shield_deactivated
 
-	### DEBUG ###
-	set_shield_active(2)
+	set_shield_active(10)
 
 func _physics_process(delta: float) -> void:
 	direction = direction.lerp(target_direction, turn_speed * delta).normalized()
@@ -50,10 +60,6 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		velocity = direction * speed
 		move_and_collide(velocity * delta)
-
-func _start_timer() -> void:
-	timer.wait_time = randf_range(1.0, 3.0)
-	timer.start()
 
 func hit(hit_info: HitInfo) -> void:
 	# health
@@ -74,13 +80,20 @@ func disable_collisions(value: bool):
 	body_collision.disabled = value
 	dome_collision.disabled = value
 
-func _on_ufo_tick() -> void:
+func _start_random_timer(timer: Timer, min_t, max_t) -> void:
+	timer.wait_time = randf_range(min_t, max_t)
+	timer.start()
+
+func _on_ufo_movement_tick() -> void:
 	var random_angle: float = randf_range(45, 60)
 	if randf() > 0.5:
 		random_angle = -random_angle
 	target_direction = direction.rotated(deg_to_rad(random_angle))
 	target_speed = randf_range(speed_range.x, speed_range.y)
-	_start_timer()
+	_start_movement_timer.call()
+
+func _on_ufo_shooting_tick() -> void:
+	_start_shooting_timer.call()
 
 func _on_died():
 	can_move = false
