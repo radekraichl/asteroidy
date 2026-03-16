@@ -27,7 +27,16 @@ var _shooting_timer: Timer = Timer.new()
 var _start_movement_timer = _start_random_timer.bind(_movement_timer, 2, 4)
 var _start_shooting_timer = _start_random_timer.bind(_shooting_timer, 1, 1)
 
+
+func _test():
+	print("test event")
+
+var _scheduler: RandomEventScheduler = RandomEventScheduler.new()
+
 func _ready() -> void:
+	add_child(_scheduler)
+	_scheduler.add_event("test", 0.3, 0.4, _test, true)
+
 	explosion.visible = false
 	speed = speed_range.x
 	target_speed = speed_range.x

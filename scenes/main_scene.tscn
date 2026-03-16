@@ -492,6 +492,7 @@ bus = &"SFX"
 
 [node name="SpawnManager" type="Node" parent="." unique_id=27467253]
 script = ExtResource("8_18nlu")
+spawn = true
 asteroid_scene = ExtResource("10_e1cbu")
 
 [node name="AsteroidContainer" type="Node2D" parent="." unique_id=1217039606]
