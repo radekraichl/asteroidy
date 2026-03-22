@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://ck7ljptxm1sse" path="res://assets/ufo_shield.png" id="7_5w6k5"]
 [ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://scripts/glow.gdshader" id="7_lan7f"]
 [ext_resource type="Script" uid="uid://dawg0e58u67e0" path="res://scripts/shield/shield.gd" id="7_tkk3j"]
+[ext_resource type="AudioStream" uid="uid://c2xxwl08pv7wl" path="res://assets/sfx/new_audio_stream_mp_3.tres" id="7_ujrry"]
 [ext_resource type="Script" uid="uid://ypyo5p6sqvns" path="res://scripts/shield/shield_collision_area.gd" id="8_ai8vk"]
+[ext_resource type="AudioStream" uid="uid://iybqb7a3i1yy" path="res://assets/sfx/shield_sfx.mp3" id="11_5rfrm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3g67"]
 radius = 7.0
@@ -151,6 +153,10 @@ stream = ExtResource("6_linyg")
 volume_db = 8.0
 bus = &"SFX"
 
+[node name="UFOSFX" type="AudioStreamPlayer2D" parent="." unique_id=1856908511]
+stream = ExtResource("7_ujrry")
+bus = &"SFX"
+
 [node name="Shield" type="AnimatedSprite2D" parent="." unique_id=1563432038]
 material = SubResource("ShaderMaterial_lan7f")
 sprite_frames = SubResource("SpriteFrames_bwq4s")
@@ -172,3 +178,7 @@ unique_name_in_owner = true
 position = Vector2(-0.5, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_tkk3j")
+
+[node name="ShieldSFX" type="AudioStreamPlayer2D" parent="Shield" unique_id=327854985]
+stream = ExtResource("11_5rfrm")
+bus = &"SFX"

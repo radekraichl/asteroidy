@@ -29,6 +29,7 @@ func add_event(event_name: String, min_interval: float, max_interval: float, cal
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout.bind(event))
+	timer.name = event_name
 	add_child(timer)
 	event.timer = timer
 	_events[event_name] = event

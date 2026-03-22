@@ -6,6 +6,7 @@ extends AnimatedSprite2D
 @export var particles_color: Color = Color("41a2ffff")
 
 @onready var collision_shape: CollisionShape2D = %CollisionShape
+@onready var _shield_sfx: AudioStreamPlayer2D = $ShieldSFX
 
 var on_deactivated : Callable
 
@@ -33,10 +34,16 @@ func set_active(time: float) -> void:
 	_shield_timer.start(time)
 	_active(true)
 
+	# play SFX
+	_shield_sfx.play()
+
 func _on_shield_timeout() -> void:
 	_active(false)
 	if on_deactivated:
 		on_deactivated.call()
+
+	# disable SFX
+	_shield_sfx.stop()
 
 func _active(value: bool):
 	visible = value

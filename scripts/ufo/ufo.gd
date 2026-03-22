@@ -11,7 +11,8 @@ extends CharacterBody2D
 @onready var explosion: AnimatedSprite2D = $Explosion
 @onready var body_collision: CollisionShape2D = $Body
 @onready var dome_collision: CollisionShape2D = $Dome
-@onready var explosion_sfx : AudioStreamPlayer2D = $ExplosionSFX
+@onready var _explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
+@onready var _ufo_sfx: AudioStreamPlayer2D = $UFOSFX
 
 @onready var _shield: Shield = $Shield
 
@@ -24,12 +25,18 @@ var _scheduler := RandomEventScheduler.new()
 var missile_impact: PackedScene = preload("res://scenes/projectile/projectile_impact.tscn")
 
 func _ready() -> void:
+	_scheduler.name = "UFORandomEventScheduler"
 	add_child(_scheduler)
 
+	# play ufo sfx
+	_ufo_sfx.play()
+
 	# setup movement timer
-	_scheduler.add_event("movement", 2, 4, _on_ufo_movement_tick, true)
+	_scheduler.add_event("movement timer", 2, 4, _on_ufo_movement_tick, true)
 	# setup shooting timer
-	_scheduler.add_event("shooting", 0.5, 1, _on_ufo_shooting_tick)
+	_scheduler.add_event("shooting timer", 0.5, 1, _on_ufo_shooting_tick)
+	# setup shield timer
+	_scheduler.add_event("shield timer", 8, 10, _on_ufo_shield_tick, true)
 
 	explosion.visible = false
 	speed = speed_range.x
@@ -41,8 +48,6 @@ func _ready() -> void:
 
 	# shield deactivated callback
 	_shield.on_deactivated = _on_shield_deactivated
-
-	set_shield_active(10)
 
 func _physics_process(delta: float) -> void:
 	direction = direction.lerp(target_direction, turn_speed * delta).normalized()
@@ -71,6 +76,9 @@ func disable_collisions(value: bool):
 	body_collision.disabled = value
 	dome_collision.disabled = value
 
+func _on_shield_deactivated() -> void:
+	disable_collisions(false)
+
 func _on_ufo_movement_tick() -> void:
 	var random_angle: float = randf_range(45, 60)
 	if randf() > 0.5:
@@ -79,7 +87,10 @@ func _on_ufo_movement_tick() -> void:
 	target_speed = randf_range(speed_range.x, speed_range.y)
 
 func _on_ufo_shooting_tick() -> void:
-	print_debug("_on_ufo_shooting_tick()")
+	pass
+
+func _on_ufo_shield_tick() -> void:
+	set_shield_active(randf_range(3, 5))
 
 func _on_died():
 	can_move = false
@@ -87,17 +98,14 @@ func _on_died():
 	$Sprite2D.visible = false
 	explosion.visible = true
 	explosion.play("explode")
-	explosion_sfx.play()
+	_explosion_sfx.play()
 
-	remove_child(explosion_sfx)
-	get_tree().root.add_child(explosion_sfx)
-	explosion_sfx.finished.connect(explosion_sfx.queue_free)
+	remove_child(_explosion_sfx)
+	get_tree().root.add_child(_explosion_sfx)
+	_explosion_sfx.finished.connect(_explosion_sfx.queue_free)
 
 	await explosion.animation_finished
 	queue_free()
-
-func _on_shield_deactivated() -> void:
-	disable_collisions(false)
 
 func _on_health_changed(_current_hp, _max_hp):
 	pass

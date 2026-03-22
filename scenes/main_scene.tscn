@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://om8kwvduykse" path="res://scripts/gui/in_game_settings.gd" id="10_adb74"]
 [ext_resource type="PackedScene" uid="uid://clww1ko6j4axm" path="res://scenes/asteroids/asteroid_big.tscn" id="10_e1cbu"]
 [ext_resource type="Texture2D" uid="uid://c041nfpmb8fys" path="res://assets/explosion_ship.png" id="12_01n6w"]
-[ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scenes/fade_panel.gd" id="12_k3g67"]
+[ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/fade_panel.gd" id="12_k3g67"]
 [ext_resource type="AudioStream" uid="uid://ccq5rq58114g" path="res://assets/sfx/laser_blast.wav" id="13_si52b"]
 [ext_resource type="Script" uid="uid://va2o05eat8pu" path="res://scripts/gui/game_over.gd" id="15_58gk3"]
 [ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/projectile.tscn" id="18_k67gn"]
