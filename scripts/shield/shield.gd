@@ -7,6 +7,7 @@ extends AnimatedSprite2D
 
 @onready var collision_shape: CollisionShape2D = %CollisionShape
 @onready var _shield_sfx: AudioStreamPlayer2D = $ShieldSFX
+@onready var _collision_area: Area2D = $ShieldCollisionArea
 
 var on_deactivated : Callable
 
@@ -14,8 +15,9 @@ var missile_impact: PackedScene = preload("res://scenes/projectile/projectile_im
 var _shield_timer: Timer
 
 func _ready() -> void:
+	_collision_area.area_entered.connect(_on_area_entered)
 	self_modulate = shield_color
-	_active(false)
+	active(false)
 
 	# timer setup
 	_shield_timer = Timer.new()
@@ -27,25 +29,25 @@ func set_active(time: float) -> void:
 	# zero time protection
 	if time <= 0.0:
 		_shield_timer.stop()
-		_active(false)
+		active(false)
 		return
 
 	# start timer and shield activation
 	_shield_timer.start(time)
-	_active(true)
+	active(true)
 
 	# play SFX
 	_shield_sfx.play()
 
 func _on_shield_timeout() -> void:
-	_active(false)
+	active(false)
 	if on_deactivated:
 		on_deactivated.call()
 
 	# disable SFX
 	_shield_sfx.stop()
 
-func _active(value: bool):
+func active(value: bool):
 	visible = value
 	collision_shape.disabled = not value
 
@@ -57,3 +59,7 @@ func hit(hit_info: HitInfo):
 
 	impact.position = to_local(hit_info.position)
 	add_child(impact)
+
+func _on_area_entered(area: Area2D):
+	if area.get_collision_layer_value(LayerManager.Layer.PLAYER):
+		StatManager.set_health(0)

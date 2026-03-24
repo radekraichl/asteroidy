@@ -8,9 +8,9 @@ extends CharacterBody2D
 @export var impact_color: Color = Color("ffe140")
 
 @onready var health: Health = $Health
-@onready var explosion: AnimatedSprite2D = $Explosion
 @onready var body_collision: CollisionShape2D = $Body
 @onready var dome_collision: CollisionShape2D = $Dome
+@onready var _explosion_anim: AnimatedSprite2D = $ExplosionAnim
 @onready var _explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
 @onready var _ufo_sfx: AudioStreamPlayer2D = $UFOSFX
 
@@ -36,9 +36,10 @@ func _ready() -> void:
 	# setup shooting timer
 	_scheduler.add_event("shooting timer", 0.5, 1, _on_ufo_shooting_tick)
 	# setup shield timer
-	_scheduler.add_event("shield timer", 8, 10, _on_ufo_shield_tick, true)
+	#_scheduler.add_event("shield timer", 8, 10, _on_ufo_shield_tick, true)
+	set_shield_active(10000)
 
-	explosion.visible = false
+	_explosion_anim.visible = false
 	speed = speed_range.x
 	target_speed = speed_range.x
 
@@ -95,16 +96,18 @@ func _on_ufo_shield_tick() -> void:
 func _on_died():
 	can_move = false
 	disable_collisions(true)
+	_shield.active(false)
 	$Sprite2D.visible = false
-	explosion.visible = true
-	explosion.play("explode")
+	_explosion_anim.visible = true
+	_explosion_anim.play("explode")
 	_explosion_sfx.play()
 
+	# ??? ZKUSIT PREDELAT PODLE ASTEROIDU ???
 	remove_child(_explosion_sfx)
 	get_tree().root.add_child(_explosion_sfx)
 	_explosion_sfx.finished.connect(_explosion_sfx.queue_free)
 
-	await explosion.animation_finished
+	await _explosion_anim.animation_finished
 	queue_free()
 
 func _on_health_changed(_current_hp, _max_hp):

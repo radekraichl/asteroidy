@@ -10,7 +10,7 @@ extends Node
 
 func _ready():
 	if (!spawn) : return
-	
+
 	spawn_asteroid()
 	spawn_timer.wait_time = 10
 	spawn_timer.autostart = true
@@ -49,10 +49,10 @@ func spawn_asteroid():
 
 	asteroid.position = position
 	asteroid.movement_direction = direction.normalized()
-	
+
 	# store container reference for spawning new asteroids on break-up
 	asteroid.asteroid_container = asteroid_container
-	
+
 	asteroid_container.add_child(asteroid)
 
 func _on_spawn_timeout():

@@ -19,9 +19,9 @@ func add_points(points: int):
 
 func reset_score():
 	score = 0
-	
+
 func set_health(new_health : int):
 	health = new_health
-	
+
 func reset_health():
 	health = 100

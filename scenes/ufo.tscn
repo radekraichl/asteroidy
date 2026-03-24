@@ -121,7 +121,6 @@ height = 52.0
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_gp6nc")
-speed_range = Vector2(60, 100)
 turn_speed = 8.0
 
 [node name="Wrap" parent="." unique_id=1397656902 instance=ExtResource("2_1aa4c")]
@@ -141,7 +140,7 @@ shape = SubResource("CapsuleShape2D_k3g67")
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_4bgka")
 
-[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=191315073]
+[node name="ExplosionAnim" type="AnimatedSprite2D" parent="." unique_id=191315073]
 visible = false
 sprite_frames = SubResource("SpriteFrames_4l4ni")
 animation = &"explode"
@@ -168,7 +167,6 @@ particles_color = Color(0.6866938, 0.79920435, 0.90774393, 1)
 metadata/_custom_type_script = "uid://dawg0e58u67e0"
 
 [node name="ShieldCollisionArea" type="Area2D" parent="Shield" unique_id=1651385173]
-visible = false
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("8_ai8vk")
