@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed: float = 600.0
 @export var bonus_speed: float = 0.0
 @export var color: Color = Color("ffffff")
+@export var raycast_length: float = 14.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var _raycast: RayCast2D = $RayCast2D
@@ -33,13 +34,17 @@ func _physics_process(delta):
 		queue_free()
 		return
 
-	_raycast.target_position = Vector2.UP * (speed * delta)
+	_raycast.target_position = Vector2.UP * (raycast_length + speed * delta)
 	if _raycast.is_colliding():
 		hit_info.position = _raycast.get_collision_point()
 		var object = _raycast.get_collider()
 		if object.has_method("hit"):
 			object.hit(hit_info)
 		queue_free()
+
+func disable_layer(layer_index: int) -> void:
+	set_collision_mask_value(layer_index, false)
+	_raycast.set_collision_mask_value(layer_index, false)
 
 func _on_screen_exited():
 	queue_free()

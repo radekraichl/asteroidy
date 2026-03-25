@@ -99,8 +99,8 @@ func _physics_process(delta):
 		projectile.global_position = global_position + velocity * get_physics_process_delta_time()
 		projectile.speed += velocity.length()
 		projectile.global_rotation = global_rotation
-		projectile.set_collision_mask_value(LayerManager.Layer.PLAYER, false)
 		get_parent().add_child(projectile)
+		projectile.disable_layer(LayerManager.Layer.PLAYER)
 
 		if play_sfx:
 			projectile_sfx.play()

@@ -29,10 +29,9 @@ texture = ExtResource("1_cdnlh")
 shape = SubResource("RectangleShape2D_cdnlh")
 
 [node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=934467458]
-visible = false
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=512872678]
-position = Vector2(0, -7)
+position = Vector2(0, 7)
 target_position = Vector2(0, -14)
 collision_mask = 11
 collide_with_areas = true
