@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c06fx4od62njj" path="res://scripts/background/starfield_generator.gd" id="1_to7gp"]
 [ext_resource type="Script" uid="uid://veeu7hiraxc1" path="res://scripts/background/background.gd" id="1_u0fll"]
 [ext_resource type="FontFile" uid="uid://2xh1s6462lgr" path="res://assets/ari_w9500/ari-w9500-condensed-display.ttf" id="2_c16ls"]
-[ext_resource type="Script" uid="uid://dglk6ribm782h" path="res://scripts/ship/ship.gd" id="2_rt2n2"]
 [ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://ui_theme.tres" id="3_7nt27"]
 [ext_resource type="Script" uid="uid://td5o3in76l7v" path="res://scripts/gui/pause_menu.gd" id="4_xdqt8"]
 [ext_resource type="Texture2D" uid="uid://dgxvxu8iiohx8" path="res://assets/health_bar_bg.png" id="5_4w45t"]
@@ -13,21 +12,14 @@
 [ext_resource type="Script" uid="uid://cb2cup0fvr3ua" path="res://scripts/gui/hud.gd" id="6_c16ls"]
 [ext_resource type="Script" uid="uid://cils70phfdhxb" path="res://scripts/gui/health_bar.gd" id="6_mngbo"]
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/button_focus.ogg" id="7_58gk3"]
-[ext_resource type="Texture2D" uid="uid://bbhvcnmw8v4f3" path="res://assets/rocket_plumes_big.png" id="7_c1pb6"]
 [ext_resource type="Script" uid="uid://dymb65j43empa" path="res://scripts/gui/score_label.gd" id="7_c16ls"]
 [ext_resource type="AudioStream" uid="uid://bg2w4eqs2s1x0" path="res://assets/sfx/pause_menu_open_close.ogg" id="7_to7gp"]
-[ext_resource type="Texture2D" uid="uid://cpj1wx1nvj7ju" path="res://assets/rocket_plumes_small.png" id="8_6wevv"]
 [ext_resource type="Script" uid="uid://ec4ha37blckq" path="res://scripts/managers/spawn_manager.gd" id="8_18nlu"]
 [ext_resource type="Script" uid="uid://om8kwvduykse" path="res://scripts/gui/in_game_settings.gd" id="10_adb74"]
 [ext_resource type="PackedScene" uid="uid://clww1ko6j4axm" path="res://scenes/asteroids/asteroid_big.tscn" id="10_e1cbu"]
-[ext_resource type="Texture2D" uid="uid://c041nfpmb8fys" path="res://assets/explosion_ship.png" id="12_01n6w"]
 [ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/fade_panel.gd" id="12_k3g67"]
-[ext_resource type="AudioStream" uid="uid://ccq5rq58114g" path="res://assets/sfx/laser_blast.wav" id="13_si52b"]
 [ext_resource type="Script" uid="uid://va2o05eat8pu" path="res://scripts/gui/game_over.gd" id="15_58gk3"]
-[ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/projectile.tscn" id="18_k67gn"]
-[ext_resource type="Texture2D" uid="uid://dwtib53yfu1wp" path="res://assets/ship.png" id="19_6p3nn"]
-[ext_resource type="PackedScene" uid="uid://2c5rea2hxnj8" path="res://scenes/wrap.tscn" id="24_k3g67"]
-[ext_resource type="AudioStream" uid="uid://da8q0qwjp4aqv" path="res://assets/sfx/ship_explosion_sfx.wav" id="25_4bgka"]
+[ext_resource type="PackedScene" uid="uid://oqbv7cng5h6" path="res://scenes/ship/ship.tscn" id="18_xdqt8"]
 [ext_resource type="PackedScene" uid="uid://ieyqnnvsdhg6" path="res://scenes/ufo/ufo.tscn" id="27_k67gn"]
 
 [sub_resource type="GDScript" id="GDScript_rt2n2"]
@@ -39,139 +31,6 @@ paragraph_spacing = 3.0
 font = ExtResource("2_c16ls")
 font_size = 22
 font_color = Color(0.99607843, 0.9529412, 0.7529412, 0.7058824)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r6p65"]
-atlas = ExtResource("8_6wevv")
-region = Rect2(0, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_si52b"]
-atlas = ExtResource("8_6wevv")
-region = Rect2(13, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_01n6w"]
-atlas = ExtResource("8_6wevv")
-region = Rect2(26, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6u1mn"]
-atlas = ExtResource("8_6wevv")
-region = Rect2(39, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6wevv"]
-atlas = ExtResource("7_c1pb6")
-region = Rect2(0, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1cbu"]
-atlas = ExtResource("7_c1pb6")
-region = Rect2(13, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mngbo"]
-atlas = ExtResource("7_c1pb6")
-region = Rect2(26, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4w45t"]
-atlas = ExtResource("7_c1pb6")
-region = Rect2(39, 0, 13, 13)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r6p65"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r6p65")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_si52b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_01n6w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6u1mn")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6wevv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e1cbu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mngbo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4w45t")
-}],
-"loop": true,
-"name": &"thrust",
-"speed": 15.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bcnxi"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(0, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7nt27"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(70, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k6f3i"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(140, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xdqt8"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(210, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_adb74"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(280, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_58gk3"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(350, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_to7gp"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(420, 0, 70, 52)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0fll"]
-atlas = ExtResource("12_01n6w")
-region = Rect2(490, 0, 70, 52)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6p3nn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bcnxi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7nt27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k6f3i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xdqt8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_adb74")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_58gk3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_to7gp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u0fll")
-}],
-"loop": false,
-"name": &"explosion",
-"speed": 10.0
-}]
 
 [node name="Game" type="Node2D" unique_id=1709177522]
 
@@ -441,59 +300,9 @@ text = "Press any key to continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ship" type="CharacterBody2D" parent="." unique_id=946185912]
+[node name="Ship" parent="." unique_id=2146710189 instance=ExtResource("18_xdqt8")]
 unique_name_in_owner = true
-z_index = 500
 position = Vector2(497, 251)
-collision_mask = 2
-script = ExtResource("2_rt2n2")
-center_screen_position = false
-rotation_accel = 8.0
-rotation_decel = 8.0
-projectile_scene = ExtResource("18_k67gn")
-metadata/_edit_group_ = true
-
-[node name="Wrap" parent="Ship" unique_id=1397656902 instance=ExtResource("24_k3g67")]
-wrap_margin = 8.0
-
-[node name="Sprite" type="Sprite2D" parent="Ship" unique_id=138527113]
-texture = ExtResource("19_6p3nn")
-offset = Vector2(0, -6)
-
-[node name="Area2D" type="Area2D" parent="Ship" unique_id=610386734]
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship/Area2D" unique_id=419081471]
-position = Vector2(0, 1)
-polygon = PackedVector2Array(0, -24, 17, 10, -17, 10)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship" unique_id=387866298]
-visible = false
-position = Vector2(0, 1)
-polygon = PackedVector2Array(0, -23, 16, 9, -16, 9)
-
-[node name="Plumes" type="AnimatedSprite2D" parent="Ship" unique_id=975348223]
-position = Vector2(0, 13)
-sprite_frames = SubResource("SpriteFrames_r6p65")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="Explosion" type="AnimatedSprite2D" parent="Ship" unique_id=1294412027]
-visible = false
-sprite_frames = SubResource("SpriteFrames_6p3nn")
-animation = &"explosion"
-frame = 2
-frame_progress = 0.3971602
-
-[node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="Ship" unique_id=1730989659]
-stream = ExtResource("25_4bgka")
-volume_db = 6.0
-pitch_scale = 0.9
-bus = &"SFX"
-
-[node name="MissileSFX" type="AudioStreamPlayer2D" parent="Ship" unique_id=1067711791]
-stream = ExtResource("13_si52b")
-bus = &"SFX"
 
 [node name="SpawnManager" type="Node" parent="." unique_id=27467253]
 script = ExtResource("8_18nlu")
@@ -503,10 +312,9 @@ asteroid_scene = ExtResource("10_e1cbu")
 unique_name_in_owner = true
 
 [node name="UFO" parent="." unique_id=1375694361 instance=ExtResource("27_k67gn")]
-position = Vector2(505, 143)
+position = Vector2(730, 152)
 
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="PauseMenu/SettingsRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BackButton" to="PauseMenu/SettingsRoot" method="_on_back_button_pressed"]
-[connection signal="body_entered" from="Ship/Area2D" to="Ship" method="_on_area_2d_body_entered"]
