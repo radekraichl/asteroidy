@@ -17,7 +17,7 @@ var _shield_timer: Timer
 func _ready() -> void:
 	_collision_area.area_entered.connect(_on_area_entered)
 	self_modulate = shield_color
-	active(false)
+	set_enabled(false)
 
 	# timer setup
 	_shield_timer = Timer.new()
@@ -25,39 +25,39 @@ func _ready() -> void:
 	_shield_timer.timeout.connect(_on_shield_timeout)
 	add_child(_shield_timer)
 
-func set_active(time: float) -> void:
+func activate_for(time: float) -> void:
 	# zero time protection
 	if time <= 0.0:
 		_shield_timer.stop()
-		active(false)
+		set_enabled(false)
 		return
 
 	# start timer and shield activation
 	_shield_timer.start(time)
-	active(true)
+	set_enabled(true)
 
 	# play SFX
 	_shield_sfx.play()
 
 func _on_shield_timeout() -> void:
-	active(false)
+	set_enabled(false)
 	if on_deactivated:
 		on_deactivated.call()
 
 	# disable SFX
 	_shield_sfx.stop()
 
-func active(value: bool):
+func set_enabled(value: bool):
 	visible = value
 	collision_shape.disabled = not value
 
 func hit(hit_info: HitInfo):
-	# impact
 	var impact := missile_impact.instantiate()
 	impact.color = impact_color
 	impact.particles_color = particles_color
-
-	impact.position = to_local(hit_info.position)
+	var estimated_delta = hit_info.delta
+	var compensated_pos = to_local(hit_info.position + get_parent().velocity * estimated_delta)
+	impact.position = compensated_pos
 	add_child(impact)
 
 func _on_area_entered(area: Area2D):

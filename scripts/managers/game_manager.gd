@@ -14,7 +14,7 @@ enum GameState {
 	PAUSED
 }
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	# DEBUG
 	if DEBUG and event is InputEventKey and event.pressed and not event.echo:
 		# quit

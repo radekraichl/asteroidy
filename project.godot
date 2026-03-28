@@ -29,7 +29,6 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
-window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -50,7 +49,7 @@ reset_game={
 
 [layer_names]
 
-2d_physics/layer_1="player"
+2d_physics/layer_1="ship"
 2d_physics/layer_2="asteroid"
 2d_physics/layer_3="projectile"
 2d_physics/layer_4="ufo"

@@ -14,6 +14,7 @@ extends CharacterBody2D
 var hit_info: HitInfo = HitInfo.new()
 
 func _ready() -> void:
+	_raycast.collide_with_areas = true
 	on_screen_notifier.visible = true
 	sprite.modulate = color
 	shader.set_shader_parameter("glow_color", color)
@@ -21,6 +22,21 @@ func _ready() -> void:
 func _physics_process(delta):
 	velocity = Vector2.UP.rotated(rotation) * speed
 
+	# raycast
+	_raycast.target_position = Vector2.UP * (raycast_length + speed * delta)
+	_raycast.force_raycast_update()
+	if _raycast.is_colliding():
+		hit_info.delta = delta
+		hit_info.position = _raycast.get_collision_point()
+		hit_info.velocity = velocity
+		hit_info.source = self
+		var object = _raycast.get_collider()
+		if object.has_method("hit"):
+			object.hit(hit_info)
+		queue_free()
+		return
+
+	# move and collide
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		hit_info.angle = collision.get_angle()
@@ -33,14 +49,6 @@ func _physics_process(delta):
 			object.hit(hit_info)
 		queue_free()
 		return
-
-	_raycast.target_position = Vector2.UP * (raycast_length + speed * delta)
-	if _raycast.is_colliding():
-		hit_info.position = _raycast.get_collision_point()
-		var object = _raycast.get_collider()
-		if object.has_method("hit"):
-			object.hit(hit_info)
-		queue_free()
 
 func disable_layer(layer_index: int) -> void:
 	set_collision_mask_value(layer_index, false)

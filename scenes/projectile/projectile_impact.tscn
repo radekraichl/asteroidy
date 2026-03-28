@@ -55,10 +55,8 @@ animations = [{
 
 [sub_resource type="Curve" id="Curve_txh3t"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(1, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
-point_0/position = Vector2(1, 1)
-point_1/position = Vector2(1, 0)
 
 [node name="ProjectileImpact" type="Node2D" unique_id=1764574891]
 script = ExtResource("1_txh3t")
@@ -69,7 +67,7 @@ animation = &"impact"
 
 [node name="Particles" type="CPUParticles2D" parent="." unique_id=1468255136]
 amount = 16
-lifetime = 0.2
+lifetime = 0.25
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 0.5

@@ -27,7 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/projectile.tscn" id="18_k67gn"]
 [ext_resource type="Texture2D" uid="uid://dwtib53yfu1wp" path="res://assets/ship.png" id="19_6p3nn"]
 [ext_resource type="PackedScene" uid="uid://2c5rea2hxnj8" path="res://scenes/wrap.tscn" id="24_k3g67"]
-[ext_resource type="PackedScene" uid="uid://ieyqnnvsdhg6" path="res://scenes/ufo.tscn" id="27_k67gn"]
+[ext_resource type="AudioStream" uid="uid://da8q0qwjp4aqv" path="res://assets/sfx/ship_explosion_sfx.wav" id="25_4bgka"]
+[ext_resource type="PackedScene" uid="uid://ieyqnnvsdhg6" path="res://scenes/ufo/ufo.tscn" id="27_k67gn"]
 
 [sub_resource type="GDScript" id="GDScript_rt2n2"]
 script/source = "extends Camera2D
@@ -443,8 +444,7 @@ vertical_alignment = 1
 [node name="Ship" type="CharacterBody2D" parent="." unique_id=946185912]
 unique_name_in_owner = true
 z_index = 500
-position = Vector2(480, 264)
-rotation = -2.4085543
+position = Vector2(497, 251)
 collision_mask = 2
 script = ExtResource("2_rt2n2")
 center_screen_position = false
@@ -485,6 +485,12 @@ animation = &"explosion"
 frame = 2
 frame_progress = 0.3971602
 
+[node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="Ship" unique_id=1730989659]
+stream = ExtResource("25_4bgka")
+volume_db = 6.0
+pitch_scale = 0.9
+bus = &"SFX"
+
 [node name="MissileSFX" type="AudioStreamPlayer2D" parent="Ship" unique_id=1067711791]
 stream = ExtResource("13_si52b")
 bus = &"SFX"
@@ -497,7 +503,7 @@ asteroid_scene = ExtResource("10_e1cbu")
 unique_name_in_owner = true
 
 [node name="UFO" parent="." unique_id=1375694361 instance=ExtResource("27_k67gn")]
-position = Vector2(476, 137)
+position = Vector2(505, 143)
 
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]

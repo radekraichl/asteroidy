@@ -3,9 +3,6 @@ extends CharacterBody2D
 
 signal ship_destroyed
 
-# sfx
-@export var play_sfx : bool = true
-
 # movement
 @export var max_speed: float = 300
 @export var center_screen_position: bool = true
@@ -26,10 +23,13 @@ var angular_velocity: float = 0.0
 
 # explosion
 @onready var explosion : AnimatedSprite2D = $Explosion
+@onready var explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
 
 # projectile
 @export var projectile_scene : PackedScene
 @onready var projectile_sfx : AudioStreamPlayer2D = $MissileSFX
+
+var is_destroyed: bool = false
 
 var hit_info : HitInfo = HitInfo.new()
 
@@ -39,8 +39,11 @@ func _ready():
 		position = Vector2(Setup.screen_width / 2, Setup.screen_height / 2)
 
 func _physics_process(delta):
-	if StatManager.health <= 0:
+	if StatManager.health <= 0 and not is_destroyed:
 		destroy()
+
+	if is_destroyed:
+		return
 
 	# input
 	turn_input = 0.0
@@ -101,9 +104,7 @@ func _physics_process(delta):
 		projectile.global_rotation = global_rotation
 		get_parent().add_child(projectile)
 		projectile.disable_layer(LayerManager.Layer.PLAYER)
-
-		if play_sfx:
-			projectile_sfx.play()
+		projectile_sfx.play()
 
 	# thrusting animation
 	if is_thrusting != was_thrusting:
@@ -114,7 +115,6 @@ func _physics_process(delta):
 	was_thrusting = is_thrusting
 
 func _on_area_2d_body_entered(body):
-	#if LayerManager.is_in_layer(body, LayerManager.Layer.ASTEROID):
 	if body.get_collision_layer_value(LayerManager.Layer.ASTEROID):
 		var _damage = (body as Asteroid).contact_damage
 		StatManager.set_health(StatManager.health - _damage)
@@ -123,13 +123,20 @@ func _on_area_2d_body_entered(body):
 			body.hit(hit_info)
 
 func destroy():
+	is_destroyed = true
 	var sprite = $Sprite
 	velocity = Vector2.ZERO
 	rotation = 0
 	sprite.visible = false
 	plumes.visible = false
 	explosion.visible = true
+
 	explosion.play("explosion")
+	explosion_sfx.play()
+	var anim_finished = explosion.animation_finished
+	anim_finished.connect(func(): explosion.visible = false)
+	var sfx_finished = explosion_sfx.finished
+	await anim_finished
+	await sfx_finished
 	ship_destroyed.emit()
-	await explosion.animation_finished
 	queue_free()

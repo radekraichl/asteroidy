@@ -36,8 +36,7 @@ func _ready() -> void:
 	# setup shooting timer
 	_scheduler.add_event("shooting timer", 0.5, 1, _on_ufo_shooting_tick)
 	# setup shield timer
-	#_scheduler.add_event("shield timer", 8, 10, _on_ufo_shield_tick, true)
-	set_shield_active(10000)
+	_scheduler.add_event("shield timer", 8, 10, _on_ufo_shield_tick, true)
 
 	_explosion_anim.visible = false
 	speed = speed_range.x
@@ -51,8 +50,8 @@ func _ready() -> void:
 	_shield.on_deactivated = _on_shield_deactivated
 
 func _physics_process(delta: float) -> void:
-	direction = direction.lerp(target_direction, turn_speed * delta).normalized()
-	speed = lerp(speed, target_speed, turn_speed * delta)
+	direction = direction.lerp(target_direction, 1.0 - exp(-turn_speed * delta)).normalized()
+	speed = lerp(speed, target_speed, 1.0 - exp(-turn_speed * delta))
 
 	if can_move:
 		velocity = direction * speed
@@ -69,8 +68,8 @@ func hit(hit_info: HitInfo) -> void:
 	impact.position = to_local(hit_info.position)
 	add_child(impact)
 
-func set_shield_active(time: float) -> void:
-	_shield.set_active(time)
+func set_shield_active_for(time: float) -> void:
+	_shield.activate_for(time)
 	disable_collisions(true)
 
 func disable_collisions(value: bool):
@@ -91,23 +90,24 @@ func _on_ufo_shooting_tick() -> void:
 	pass
 
 func _on_ufo_shield_tick() -> void:
-	set_shield_active(randf_range(3, 5))
+	set_shield_active_for(randf_range(3, 5))
 
 func _on_died():
 	can_move = false
 	disable_collisions(true)
-	_shield.active(false)
+	_shield.set_enabled(false)
 	$Sprite2D.visible = false
 	_explosion_anim.visible = true
+
+	_ufo_sfx.stop()
+
 	_explosion_anim.play("explode")
 	_explosion_sfx.play()
-
-	# ??? ZKUSIT PREDELAT PODLE ASTEROIDU ???
-	remove_child(_explosion_sfx)
-	get_tree().root.add_child(_explosion_sfx)
-	_explosion_sfx.finished.connect(_explosion_sfx.queue_free)
-
-	await _explosion_anim.animation_finished
+	var anim_finished = _explosion_anim.animation_finished
+	var sfx_finished = _explosion_sfx.finished
+	anim_finished.connect(func(): _explosion_anim.visible = false)
+	await anim_finished
+	await sfx_finished
 	queue_free()
 
 func _on_health_changed(_current_hp, _max_hp):
