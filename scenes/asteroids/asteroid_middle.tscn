@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cybodbjhj40ky"]
 
 [ext_resource type="Script" uid="uid://yrk83ntgn1d5" path="res://scripts/asteroid/asteroid.gd" id="1_hjsfl"]
-[ext_resource type="PackedScene" uid="uid://oc373y1w6x0c" path="res://scenes/asteroids/asteroid_small.tscn" id="2_pyvlq"]
 [ext_resource type="Texture2D" uid="uid://5tkbjnakpfda" path="res://assets/asteroids_md.png" id="3_wxfqa"]
 [ext_resource type="Texture2D" uid="uid://capdcd0atm6ip" path="res://assets/explosion_asteroid_md.png" id="4_pyvlq"]
 [ext_resource type="AudioStream" uid="uid://b76d1q0n3pj7o" path="res://assets/sfx/explosion_md.wav" id="5_slj8i"]
@@ -70,7 +69,6 @@ radius = 12.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_hjsfl")
-child_asteroid_scene = ExtResource("2_pyvlq")
 hit_points = 2
 contact_damage = 30
 child_count = 2

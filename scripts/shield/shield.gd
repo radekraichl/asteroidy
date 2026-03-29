@@ -1,6 +1,7 @@
 class_name Shield
 extends AnimatedSprite2D
 
+@export var score_on_hit : int = 5
 @export var shield_color: Color = Color("0f73d2ff")
 @export var impact_color: Color = Color("1c8ffdff")
 @export var particles_color: Color = Color("41a2ffff")
@@ -61,6 +62,9 @@ func hit(hit_info: HitInfo):
 	var compensated_pos = to_local(hit_info.position + get_parent().velocity * estimated_delta)
 	impact.position = compensated_pos
 	add_child(impact)
+
+	# set score
+	StatManager.add_points(score_on_hit)
 
 func _on_area_entered(area: Area2D):
 	if area.get_collision_layer_value(LayerManager.Layer.PLAYER):

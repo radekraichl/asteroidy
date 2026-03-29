@@ -121,6 +121,8 @@ height = 52.0
 [node name="UFO" type="CharacterBody2D" unique_id=1375694361]
 collision_layer = 8
 script = ExtResource("1_gp6nc")
+can_move = false
+can_shoot = false
 turn_speed = 8.0
 score_on_hit = 300
 max_extra_bonus = 40

@@ -7,6 +7,7 @@ const SHOOTING_TIMER_NAME = "shooting_timer"
 @export var projectile_damage: int = 20
 @export var contact_damage: int  = 50
 @export var can_move: bool = true
+@export var can_shoot: bool = true
 @export var speed_range: Vector2 = Vector2(90.0, 130.0)
 @export var turn_speed: float = 10.0
 @export var impact_color: Color = Color("ffe140")
@@ -122,7 +123,7 @@ func _on_ufo_shooting_tick() -> void:
 	_scheduler.set_interval("shoot", min_time, max_time, false, randi_range(2, 4))
 
 func _on_ufo_shoot() -> void:
-	if StatManager.health <= 0:
+	if StatManager.health <= 0 || not can_shoot:
 		return
 	if _shield.is_active:
 		_scheduler.set_enabled("shoot", false)
