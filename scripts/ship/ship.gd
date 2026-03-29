@@ -27,7 +27,7 @@ var angular_velocity: float = 0.0
 
 # projectile
 @export var projectile_scene : PackedScene
-@onready var projectile_sfx : AudioStreamPlayer2D = $MissileSFX
+@onready var projectile_sfx : AudioStreamPlayer2D = $ProjectileSFX
 
 var is_destroyed: bool = false
 

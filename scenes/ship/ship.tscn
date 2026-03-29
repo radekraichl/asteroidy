@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://oqbv7cng5h6"]
 
 [ext_resource type="Script" uid="uid://dglk6ribm782h" path="res://scripts/ship/ship.gd" id="1_gkhk1"]
-[ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/ship_projectile.tscn" id="2_37jfo"]
+[ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/projectile.tscn" id="2_37jfo"]
 [ext_resource type="PackedScene" uid="uid://2c5rea2hxnj8" path="res://scenes/wrap.tscn" id="3_sttky"]
 [ext_resource type="Texture2D" uid="uid://dwtib53yfu1wp" path="res://assets/ship.png" id="4_0ipbl"]
 [ext_resource type="Texture2D" uid="uid://cpj1wx1nvj7ju" path="res://assets/rocket_plumes_small.png" id="5_8ks32"]
 [ext_resource type="Texture2D" uid="uid://bbhvcnmw8v4f3" path="res://assets/rocket_plumes_big.png" id="6_itjdq"]
 [ext_resource type="Texture2D" uid="uid://c041nfpmb8fys" path="res://assets/explosion_ship.png" id="7_roibb"]
 [ext_resource type="AudioStream" uid="uid://da8q0qwjp4aqv" path="res://assets/sfx/ship_explosion_sfx.wav" id="8_wkb1m"]
-[ext_resource type="AudioStream" uid="uid://ccq5rq58114g" path="res://assets/sfx/laser_blast.wav" id="9_r75st"]
+[ext_resource type="AudioStream" uid="uid://ccq5rq58114g" path="res://assets/sfx/projectile_sfx.wav" id="9_r75st"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6p65"]
 atlas = ExtResource("5_8ks32")
@@ -190,8 +190,10 @@ volume_db = 6.0
 pitch_scale = 0.9
 bus = &"SFX"
 
-[node name="MissileSFX" type="AudioStreamPlayer2D" parent="." unique_id=940908482]
+[node name="ProjectileSFX" type="AudioStreamPlayer2D" parent="." unique_id=940908482]
 stream = ExtResource("9_r75st")
+volume_db = 1.0
+pitch_scale = 1.2
 bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

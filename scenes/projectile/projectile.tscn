@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cp8f44ulakgww"]
 
-[ext_resource type="Script" uid="uid://cohf02gqkp0vg" path="res://scripts/projectile/projectile.gd" id="1_y1474"]
-[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://scripts/glow.gdshader" id="2_jrquk"]
-[ext_resource type="Texture2D" uid="uid://cvpo1x6u5a4jw" path="res://assets/projectile.png" id="3_wcsek"]
+[ext_resource type="Script" uid="uid://cohf02gqkp0vg" path="res://scripts/projectile/projectile.gd" id="1_0uoyr"]
+[ext_resource type="Texture2D" uid="uid://cvpo1x6u5a4jw" path="res://assets/projectile.png" id="1_cdnlh"]
+[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://scripts/glow.gdshader" id="2_lw0th"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lw0th"]
-shader = ExtResource("2_jrquk")
+shader = ExtResource("2_lw0th")
 shader_parameter/glow_color = Color(0.25635225, 0.60873955, 0.9274734, 1)
 shader_parameter/glow_size = 7.000000285
 shader_parameter/glow_intensity = 0.9000000189999999
@@ -18,13 +18,13 @@ size = Vector2(2, 14)
 z_index = -1
 collision_layer = 4
 collision_mask = 11
-script = ExtResource("1_y1474")
+script = ExtResource("1_0uoyr")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=883835974]
 self_modulate = Color(0.19136688, 0.57126963, 0.8551318, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_lw0th")
-texture = ExtResource("3_wcsek")
+texture = ExtResource("1_cdnlh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=565795100]
 visible = false

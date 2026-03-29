@@ -20,10 +20,13 @@ var destroy_extra_bonus : int
 @onready var body_collision: CollisionShape2D = $Body
 @onready var dome_collision: CollisionShape2D = $Dome
 @onready var _explosion_anim: AnimatedSprite2D = $ExplosionAnim
-@onready var _explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
-@onready var _ufo_sfx: AudioStreamPlayer2D = $UFOSFX
 @onready var _shield: Shield = $Shield
 @onready var _ship: Ship = %Ship
+
+# SFX
+@onready var _explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
+@onready var _ufo_sfx: AudioStreamPlayer2D = $UFOSFX
+@onready var _projectile_sfx: AudioStreamPlayer2D = $ProjectileSFX
 
 var direction: Vector2 = Vector2.RIGHT
 var speed: float
@@ -129,6 +132,7 @@ func _on_ufo_shoot() -> void:
 	var dir = (_ship.global_position - global_position).normalized()
 	projectile.rotation = Vector2.UP.angle_to(dir)
 	projectile.disable_layer(LayerManager.Layer.UFO)
+	_projectile_sfx.play()
 
 func _on_ufo_shield_tick() -> void:
 	set_shield_active_for(randf_range(3, 5))
