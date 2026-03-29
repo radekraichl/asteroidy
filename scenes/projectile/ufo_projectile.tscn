@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ds62aw5lukdjd"]
 
 [ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/projectile.tscn" id="1_layuo"]
-[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://scripts/glow.gdshader" id="2_qigxt"]
+[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://assets/glow.gdshader" id="2_qigxt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqrik"]
 shader = ExtResource("2_qigxt")
@@ -11,7 +11,7 @@ shader_parameter/glow_intensity = 1.1630000314925
 shader_parameter/glow_falloff = 3.6250001246875
 
 [node name="Projectile" unique_id=620313389 instance=ExtResource("1_layuo")]
-speed = 400.0
+speed = 200.0
 
 [node name="Sprite" parent="." index="0" unique_id=883835974]
 self_modulate = Color(0.88143784, 0.22044094, 0.2538244, 1)

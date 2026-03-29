@@ -16,12 +16,13 @@ const SHOOTING_TIMER_NAME = "shooting_timer"
 @export var max_extra_bonus : int = 90
 var destroy_extra_bonus : int
 
+@onready var _ship: Ship = %Ship
 @onready var health: Health = $Health
 @onready var body_collision: CollisionShape2D = $Body
 @onready var dome_collision: CollisionShape2D = $Dome
 @onready var _explosion_anim: AnimatedSprite2D = $ExplosionAnim
 @onready var _shield: Shield = $Shield
-@onready var _ship: Ship = %Ship
+@onready var _wrap: Wrap = $Wrap
 
 # SFX
 @onready var _explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
@@ -64,6 +65,8 @@ func _ready() -> void:
 
 	# shield deactivated callback
 	_shield.on_deactivated = _on_shield_deactivated
+
+	_wrap.wrapped.connect(_on_ufo_wrapped)
 
 func _physics_process(delta: float) -> void:
 	direction = direction.lerp(target_direction, 1.0 - exp(-turn_speed * delta)).normalized()
@@ -134,10 +137,15 @@ func _on_ufo_shoot() -> void:
 	projectile.disable_layer(LayerManager.Layer.UFO)
 	_projectile_sfx.play()
 
+func _on_ufo_wrapped() -> void:
+	# prevents the UFO from continuing to shoot after wrapping
+	if _scheduler.has_event("shoot"):
+		_scheduler.set_enabled("shoot", false)
+
 func _on_ufo_shield_tick() -> void:
 	set_shield_active_for(randf_range(3, 5))
 
-func _on_died():
+func _on_died() -> void:
 	_ufo_sfx.stop()
 	_scheduler.remove_event(SHIELD_TIMER_NAME)
 	_scheduler.remove_event(SHOOTING_TIMER_NAME)
@@ -156,5 +164,5 @@ func _on_died():
 	await sfx_finished
 	queue_free()
 
-func _on_health_changed(_current_hp, _max_hp):
+func _on_health_changed(_current_hp, _max_hp) -> void:
 	pass

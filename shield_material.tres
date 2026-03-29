@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dj1vi8p23ws73"]
 
-[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://scripts/glow.gdshader" id="1_6mnvn"]
+[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://assets/glow.gdshader" id="1_6mnvn"]
 
 [resource]
 resource_local_to_scene = true

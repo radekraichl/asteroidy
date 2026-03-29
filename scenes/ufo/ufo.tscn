@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxpane82imrnw" path="res://assets/explosion_ufo.png" id="5_vvsiw"]
 [ext_resource type="AudioStream" uid="uid://d0nr4woprrfsw" path="res://assets/sfx/ufo_explosion_sfx.wav" id="6_linyg"]
 [ext_resource type="Texture2D" uid="uid://ck7ljptxm1sse" path="res://assets/ufo_shield.png" id="7_5w6k5"]
-[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://scripts/glow.gdshader" id="7_lan7f"]
+[ext_resource type="Shader" uid="uid://1jq6hug04ed4" path="res://assets/glow.gdshader" id="7_lan7f"]
 [ext_resource type="Script" uid="uid://dawg0e58u67e0" path="res://scripts/shield/shield.gd" id="7_tkk3j"]
 [ext_resource type="AudioStream" uid="uid://btmtkxjoulkkq" path="res://assets/sfx/ufo_sfx.wav" id="7_ujrry"]
 [ext_resource type="Script" uid="uid://ypyo5p6sqvns" path="res://scripts/shield/shield_collision_area.gd" id="8_ai8vk"]
