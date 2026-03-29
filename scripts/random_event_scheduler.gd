@@ -13,7 +13,6 @@ class RandomEvent extends RefCounted:
 	var enabled: bool = true
 	var max_count: int = -1
 	var fire_count: int = 0
-
 	func _init(p_event_name: String, p_min: float, p_max: float, p_callback: Callable, p_max_count: int = -1) -> void:
 		event_name = p_event_name
 		min_interval = p_min
@@ -23,11 +22,11 @@ class RandomEvent extends RefCounted:
 
 var _events: Dictionary = {}
 
-# Vrátí true pokud event s daným jménem existuje
+## Returns true if an event with the given name exists.
 func has_event(event_name: String) -> bool:
 	return _events.has(event_name)
 
-# Registruje a spustí nový náhodný event
+## Registers and starts a new random event.
 func add_event(event_name: String, callback: Callable, min_interval: float, max_interval: float, fire_immediately: bool = false, max_count: int = -1) -> void:
 	if _events.has(event_name):
 		push_warning("RandomEventScheduler: event '%s' already exists." % event_name)
@@ -45,7 +44,7 @@ func add_event(event_name: String, callback: Callable, min_interval: float, max_
 	else:
 		_schedule(event)
 
-# Odstraní event a uvolní jeho timer
+## Removes an event and frees its timer.
 func remove_event(event_name: String) -> void:
 	if not _events.has(event_name):
 		return
@@ -54,7 +53,7 @@ func remove_event(event_name: String) -> void:
 	event.timer.queue_free()
 	_events.erase(event_name)
 
-# Pozastaví nebo obnoví konkrétní event
+## Pauses or resumes a specific event.
 func set_enabled(event_name: String, enabled: bool) -> void:
 	if not _events.has(event_name):
 		return
@@ -65,12 +64,12 @@ func set_enabled(event_name: String, enabled: bool) -> void:
 	else:
 		event.timer.stop()
 
-# Pozastaví nebo obnoví všechny eventy
+## Pauses or resumes all events.
 func set_all_enabled(enabled: bool) -> void:
 	for key in _events:
 		set_enabled(key, enabled)
 
-# Změní interval (volitelně vynuluje fire_count a znovu spustí)
+## Changes the interval, optionally resets fire_count and restarts the event.
 func set_interval(event_name: String, min_interval: float, max_interval: float, fire_immediately: bool = false, max_count: int = -1) -> void:
 	if not _events.has(event_name):
 		return
@@ -86,7 +85,7 @@ func set_interval(event_name: String, min_interval: float, max_interval: float, 
 	else:
 		_schedule(event)
 
-# Vynutí okamžité spuštění a přeplánuje
+## Forces immediate firing and reschedules the event.
 func trigger_now(event_name: String) -> void:
 	if not _events.has(event_name):
 		return
