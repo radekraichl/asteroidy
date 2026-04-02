@@ -15,7 +15,6 @@ const SHOOTING_TIMER_NAME = "shooting_timer"
 # score
 @export var score_on_hit : int = 450
 @export var max_extra_bonus : int = 90
-var destroy_extra_bonus : int
 
 @onready var _ship: Ship = %Ship
 @onready var health: Health = $Health
@@ -53,9 +52,6 @@ func _ready() -> void:
 	# setup shield timer
 	_scheduler.add_event(SHIELD_TIMER_NAME, _on_ufo_shield_tick, 8, 10)
 
-	# pick an extra bonus
-	destroy_extra_bonus = randi_range(0, max_extra_bonus)
-
 	_explosion_anim.visible = false
 	speed = speed_range.x
 	target_speed = speed_range.x
@@ -82,8 +78,10 @@ func hit(hit_info: HitInfo) -> void:
 	if hit_info.source is Projectile:
 		# health
 		health.take_damage(projectile_damage)
+		# pick an extra bonus
+		var extra_bonus = randi_range(0, max_extra_bonus)
 		# score
-		StatManager.add_points(score_on_hit + destroy_extra_bonus)
+		StatManager.add_points(score_on_hit + extra_bonus)
 		# impact
 		var impact := missile_impact.instantiate()
 		impact.color = impact_color
