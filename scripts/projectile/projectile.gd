@@ -23,6 +23,7 @@ func _physics_process(delta):
 	_raycast.target_position = Vector2.UP * (raycast_length + speed * delta)
 	_raycast.force_raycast_update()
 	if _raycast.is_colliding():
+		hit_info.damage = damage
 		hit_info.delta = delta
 		hit_info.position = _raycast.get_collision_point()
 		hit_info.velocity = velocity
@@ -36,6 +37,7 @@ func _physics_process(delta):
 	# move and collide
 	var collision = move_and_collide(velocity * delta)
 	if collision:
+		hit_info.damage = damage
 		hit_info.angle = collision.get_angle()
 		hit_info.position = collision.get_position()
 		hit_info.velocity = velocity

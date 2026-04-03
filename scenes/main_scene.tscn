@@ -312,7 +312,10 @@ asteroid_scene = ExtResource("10_e1cbu")
 unique_name_in_owner = true
 
 [node name="UFO" parent="." unique_id=1375694361 instance=ExtResource("27_k67gn")]
-position = Vector2(499, 72)
+position = Vector2(149, 169)
+
+[node name="AsteroidBig" parent="." unique_id=1214795606 instance=ExtResource("10_e1cbu")]
+position = Vector2(495, 104)
 
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]

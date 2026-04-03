@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://8vuvr1k7gq5i" path="res://assets/asteroids_bg.png" id="3_wwicn"]
 [ext_resource type="Texture2D" uid="uid://b4r1k5xifcnkx" path="res://assets/explosion_asteroid_bg.png" id="4_wwicn"]
 [ext_resource type="AudioStream" uid="uid://bjs8euui0pj8o" path="res://assets/sfx/explosion_bg.wav" id="5_cpdb5"]
+[ext_resource type="Script" uid="uid://bovhliyr7f8m7" path="res://scripts/health.gd" id="6_atcj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwicn"]
 atlas = ExtResource("4_wwicn")
@@ -71,7 +72,6 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_fdwrs")
 child_asteroid_scene = ExtResource("2_wwicn")
-hit_points = 3
 contact_damage = 40
 child_count = 3
 sprite_size = 32
@@ -103,3 +103,8 @@ stream = ExtResource("5_cpdb5")
 volume_db = 3.0
 pitch_scale = 0.9
 bus = &"SFX"
+
+[node name="Health" type="Node" parent="." unique_id=1828200906]
+script = ExtResource("6_atcj6")
+current_health = 30
+metadata/_custom_type_script = "uid://bovhliyr7f8m7"

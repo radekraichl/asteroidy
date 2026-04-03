@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b57i8uv3sntuo" path="res://assets/asteroids_sm.png" id="2_h4d64"]
 [ext_resource type="Texture2D" uid="uid://b15r8wdx88ki2" path="res://assets/explosion_asteroid_sm.png" id="3_4jaws"]
 [ext_resource type="AudioStream" uid="uid://cub4isqyp5byi" path="res://assets/sfx/explosion_sm.wav" id="4_h4d64"]
+[ext_resource type="Script" uid="uid://bovhliyr7f8m7" path="res://scripts/health.gd" id="5_4jaws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7wxb"]
 atlas = ExtResource("3_4jaws")
@@ -76,7 +77,10 @@ radius = 8.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_aw4ng")
+hit_points = null
 contact_damage = 20
+child_count = null
+sprite_size = null
 speed_range = Vector2(40, 80)
 rotation_speed_range = Vector2(4, 6)
 score_on_hit = 150
@@ -103,3 +107,8 @@ shape = SubResource("CircleShape2D_8rk7o")
 [node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="." unique_id=1593878109]
 stream = ExtResource("4_h4d64")
 bus = &"SFX"
+
+[node name="Health" type="Node" parent="." unique_id=219637098]
+script = ExtResource("5_4jaws")
+current_health = 10
+metadata/_custom_type_script = "uid://bovhliyr7f8m7"

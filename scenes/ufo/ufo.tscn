@@ -131,6 +131,7 @@ max_extra_bonus = 40
 
 [node name="Health" type="Node" parent="." unique_id=1263447560]
 script = ExtResource("4_1aa4c")
+current_health = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=131832471]
 texture = ExtResource("3_vvsiw")

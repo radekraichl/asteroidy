@@ -4,7 +4,6 @@ extends CharacterBody2D
 const SHIELD_TIMER_NAME = "shield_timer"
 const SHOOTING_TIMER_NAME = "shooting_timer"
 
-@export var projectile_damage: int = 20
 @export var contact_damage: int  = 50
 @export var can_move: bool = true
 @export var can_shoot: bool = true
@@ -77,7 +76,7 @@ func hit(hit_info: HitInfo) -> void:
 	# projectile
 	if hit_info.source is Projectile:
 		# health
-		health.take_damage(projectile_damage)
+		health.take_damage(hit_info.damage)
 		# pick an extra bonus
 		var extra_bonus = randi_range(0, max_extra_bonus)
 		# score

@@ -1,8 +1,8 @@
 class_name Health
 extends Node
 
-@export var max_health: int = 100
 @export var current_health: int = 100
+@export var max_health: int = 100
 
 signal health_changed(current: int, max: int)
 signal damaged(amount: int)

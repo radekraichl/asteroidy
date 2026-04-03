@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Asteroid
 
 @export var child_asteroid_scene : PackedScene
-@export var hit_points : int
 @export var contact_damage : int
 @export var child_count: int
 @export var sprite_size : int
@@ -13,6 +12,7 @@ class_name Asteroid
 @onready var collision : CollisionShape2D = $Collision
 @onready var explosion : AnimatedSprite2D = $Explosion
 @onready var explosion_sfx : AudioStreamPlayer2D = $ExplosionSFX
+@onready var _health: Health = $Health
 
 # score
 @export var score_on_hit : int
@@ -59,6 +59,7 @@ func _physics_process(delta):
 func hit(hit_info : HitInfo):
 	if hit_info.source is Ship:
 		destroy_asteroid()
+		StatManager.add_points((int)(score_on_hit / 4.0 + destroy_extra_bonus / 4.0))
 		return
 
 	StatManager.add_points(score_on_hit + destroy_extra_bonus)
@@ -68,9 +69,9 @@ func hit(hit_info : HitInfo):
 	impact.position = to_local(hit_info.position)
 	add_child(impact)
 
-	# hit points
-	hit_points -= 1
-	if hit_points > 0:
+	# health
+	_health.take_damage(hit_info.damage)
+	if _health.current_health > 0:
 		return
 
 	var spread := deg_to_rad(randf_range(90.0, 100.0))
