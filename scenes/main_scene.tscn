@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/gui/fade_panel.gd" id="12_k3g67"]
 [ext_resource type="Script" uid="uid://va2o05eat8pu" path="res://scripts/gui/game_over.gd" id="15_58gk3"]
 [ext_resource type="PackedScene" uid="uid://oqbv7cng5h6" path="res://scenes/ship/ship.tscn" id="18_xdqt8"]
+[ext_resource type="PackedScene" uid="uid://l7d2n64m3ebg" path="res://scenes/health_bonus.tscn" id="22_adb74"]
 [ext_resource type="PackedScene" uid="uid://ieyqnnvsdhg6" path="res://scenes/ufo/ufo.tscn" id="27_k67gn"]
 
 [sub_resource type="GDScript" id="GDScript_rt2n2"]
@@ -312,10 +313,13 @@ asteroid_scene = ExtResource("10_e1cbu")
 unique_name_in_owner = true
 
 [node name="UFO" parent="." unique_id=1375694361 instance=ExtResource("27_k67gn")]
-position = Vector2(503, 96)
+position = Vector2(254, 262)
 
 [node name="AsteroidBig" parent="." unique_id=1214795606 instance=ExtResource("10_e1cbu")]
 position = Vector2(257, 91)
+
+[node name="Node2D" parent="." unique_id=1286018886 instance=ExtResource("22_adb74")]
+position = Vector2(491, 109)
 
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]

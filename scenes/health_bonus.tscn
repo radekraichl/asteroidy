@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://l7d2n64m3ebg"]
+
+[ext_resource type="Script" uid="uid://lvrskocj52e4" path="res://scripts/wrap.gd" id="1_cu8pv"]
+[ext_resource type="Texture2D" uid="uid://d1lp4t2nfpvmq" path="res://assets/health_bonus.png" id="1_xoe3d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu8pv"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6kr8"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd7rf"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1fe4"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8asgw"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8nv"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa8sl"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66v34"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjxb5"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyuwc"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb07q"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su3vi"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfjbd"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf8xu"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(312, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xketx"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gmxv"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(360, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eukbd"]
+atlas = ExtResource("1_xoe3d")
+region = Rect2(384, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhxof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu8pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6kr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd7rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1fe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8asgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa8sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66v34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjxb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyuwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb07q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su3vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfjbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf8xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xketx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gmxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eukbd")
+}],
+"loop": true,
+"name": &"health_bonus_anim",
+"speed": 32.0
+}]
+
+[node name="HelathBonus" type="Node2D" unique_id=1286018886]
+
+[node name="Wrap" type="Node" parent="." unique_id=836712399]
+script = ExtResource("1_cu8pv")
+metadata/_custom_type_script = "uid://lvrskocj52e4"
+
+[node name="Animation" type="AnimatedSprite2D" parent="." unique_id=1618007502]
+sprite_frames = SubResource("SpriteFrames_jhxof")
+animation = &"health_bonus_anim"
+autoplay = "health_bonus_anim"
