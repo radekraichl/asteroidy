@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SHIELD_TIMER_NAME = "shield_timer"
 const SHOOTING_TIMER_NAME = "shooting_timer"
 
-@export var contact_damage: int  = 50
+@export var contact_damage: int  = 60
 @export var can_move: bool = true
 @export var can_shoot: bool = true
 @export var speed_range: Vector2 = Vector2(90.0, 130.0)
@@ -73,12 +73,13 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(velocity * delta)
 
 func hit(hit_info: HitInfo) -> void:
+	# pick an extra bonus
+	var extra_bonus := randi_range(0, max_extra_bonus)
+
 	# projectile
 	if hit_info.source is Projectile:
 		# health
 		health.take_damage(hit_info.damage)
-		# pick an extra bonus
-		var extra_bonus = randi_range(0, max_extra_bonus)
 		# score
 		StatManager.add_points(score_on_hit + extra_bonus)
 		# impact
@@ -89,7 +90,10 @@ func hit(hit_info: HitInfo) -> void:
 
 	# ship
 	if hit_info.source is Ship:
+		# healt
 		health.take_damage(health.max_health)
+		# score
+		StatManager.add_points((int)(score_on_hit / 4.0 + extra_bonus / 4.0))
 
 func set_shield_active_for(time: float) -> void:
 	_shield.activate_for(time)

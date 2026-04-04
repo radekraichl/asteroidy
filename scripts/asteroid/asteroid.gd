@@ -17,7 +17,6 @@ class_name Asteroid
 # score
 @export var score_on_hit : int
 @export var max_extra_bonus : int
-var destroy_extra_bonus : int
 
 var speed : float
 var movement_direction : Vector2
@@ -33,8 +32,6 @@ func _ready():
 	if asteroid_container == null:
 		asteroid_container = %AsteroidContainer
 
-	# pick an extra bonus
-	destroy_extra_bonus = randi_range(0, max_extra_bonus)
 	# pick a random sprite
 	var total_frames = sprite.hframes * sprite.vframes
 	sprite.frame = randi() % total_frames
@@ -57,12 +54,15 @@ func _physics_process(delta):
 		wrap_position()
 
 func hit(hit_info : HitInfo):
+	# pick an extra bonus
+	var extra_bonus := randi_range(0, max_extra_bonus)
+
 	if hit_info.source is Ship:
 		destroy_asteroid()
-		StatManager.add_points((int)(score_on_hit / 4.0 + destroy_extra_bonus / 4.0))
+		StatManager.add_points((int)(score_on_hit / 4.0 + extra_bonus / 4.0))
 		return
 
-	StatManager.add_points(score_on_hit + destroy_extra_bonus)
+	StatManager.add_points(score_on_hit + extra_bonus)
 
 	# impact
 	var impact := missile_impact.instantiate()
