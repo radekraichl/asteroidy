@@ -10,7 +10,6 @@ extends AnimatedSprite2D
 
 @onready var collision_shape: CollisionShape2D = %CollisionShape
 @onready var _shield_sfx: AudioStreamPlayer2D = $ShieldSFX
-@onready var _collision_area: Area2D = $ShieldCollisionArea
 @onready var _health: Health = $"../Health"
 
 var is_active: bool = false
@@ -20,7 +19,6 @@ var missile_impact: PackedScene = preload("res://scenes/projectile/projectile_im
 var _shield_timer: Timer
 
 func _ready() -> void:
-	_collision_area.area_entered.connect(_on_area_entered)
 	self_modulate = shield_color
 	set_enabled(false)
 
@@ -72,7 +70,3 @@ func hit(hit_info: HitInfo):
 	StatManager.add_points(score_on_hit + extra_bonus)
 	# health
 	_health.take_damage(damage_on_hit)
-
-func _on_area_entered(area: Area2D):
-	if area.get_collision_layer_value(LayerManager.Layer.PLAYER):
-		StatManager.set_health(0)

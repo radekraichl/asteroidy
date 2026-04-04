@@ -29,7 +29,8 @@ var angular_velocity: float = 0.0
 @export var projectile_scene : PackedScene
 @onready var projectile_sfx : AudioStreamPlayer2D = $ProjectileSFX
 
-var is_destroyed: bool = false
+# health
+@onready var _health: Health = $Health
 
 var hit_info : HitInfo = HitInfo.new()
 
@@ -38,12 +39,11 @@ func _ready():
 	if center_screen_position:
 		position = Vector2(Setup.screen_width / 2, Setup.screen_height / 2)
 
-func _process(_delta: float) -> void:
-	if StatManager.health <= 0 and not is_destroyed:
-		destroy()
+	_health.health_changed.connect(_on_health_changed)
+	_health.died.connect(destroy)
 
 func _physics_process(delta: float) -> void:
-	if is_destroyed:
+	if _health.is_dead():
 		return
 
 	# input
@@ -118,16 +118,23 @@ func _shoot() -> void:
 	projectile.disable_layer(LayerManager.Layer.PLAYER)
 	projectile_sfx.play()
 
-func _on_area_2d_body_entered(body):
-	if "contact_damage" in body:
-		StatManager.set_health(StatManager.health - body.contact_damage)
-
+func _on_area_2d_body_entered(body) -> void:
+	_handle_contact(body)
 	if body.has_method("hit"):
 		hit_info.source = self
 		body.hit(hit_info)
 
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	_handle_contact(area)
+
+func _handle_contact(object) -> void:
+	if "contact_damage" in object:
+		_health.take_damage(object.contact_damage)
+
+func _on_health_changed(_current_hp):
+	StatManager.set_health(_current_hp)
+
 func destroy():
-	is_destroyed = true
 	var sprite = $Sprite
 	velocity = Vector2.ZERO
 	rotation = 0
@@ -135,8 +142,8 @@ func destroy():
 	plumes.visible = false
 	explosion.visible = true
 
-	$Area2D/CollisionPolygon2D.disabled = true
-	$CollisionPolygon2D.disabled = true
+	$Area2D/CollisionPolygon2D.set_deferred("disabled", true)
+	$CollisionPolygon2D.set_deferred("disabled", true)
 
 	explosion.play("explosion")
 	explosion_sfx.play()

@@ -168,5 +168,5 @@ func _on_died() -> void:
 	await sfx_finished
 	queue_free()
 
-func _on_health_changed(_current_hp, _max_hp) -> void:
+func _on_health_changed(_current_hp) -> void:
 	pass

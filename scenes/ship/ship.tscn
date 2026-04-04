@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8f44ulakgww" path="res://scenes/projectile/projectile.tscn" id="2_37jfo"]
 [ext_resource type="PackedScene" uid="uid://2c5rea2hxnj8" path="res://scenes/wrap.tscn" id="3_sttky"]
 [ext_resource type="Texture2D" uid="uid://dwtib53yfu1wp" path="res://assets/ship.png" id="4_0ipbl"]
+[ext_resource type="Script" uid="uid://bovhliyr7f8m7" path="res://scripts/health.gd" id="4_37jfo"]
 [ext_resource type="Texture2D" uid="uid://cpj1wx1nvj7ju" path="res://assets/rocket_plumes_small.png" id="5_8ks32"]
 [ext_resource type="Texture2D" uid="uid://bbhvcnmw8v4f3" path="res://assets/rocket_plumes_big.png" id="6_itjdq"]
 [ext_resource type="Texture2D" uid="uid://c041nfpmb8fys" path="res://assets/explosion_ship.png" id="7_roibb"]
@@ -156,6 +157,10 @@ metadata/_edit_group_ = true
 [node name="Wrap" parent="." unique_id=1397656902 instance=ExtResource("3_sttky")]
 wrap_margin = 8.0
 
+[node name="Health" type="Node" parent="." unique_id=1821139359]
+script = ExtResource("4_37jfo")
+metadata/_custom_type_script = "uid://bovhliyr7f8m7"
+
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1844707874]
 texture = ExtResource("4_0ipbl")
 offset = Vector2(0, -6)
@@ -196,4 +201,5 @@ volume_db = 1.0
 pitch_scale = 1.2
 bus = &"SFX"
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

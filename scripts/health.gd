@@ -19,8 +19,7 @@ func take_damage(amount: int) -> void:
 	if is_dead():
 		return
 
-	current_health -= amount
-	current_health = max(current_health, 0)
+	current_health = max(current_health - amount, 0)
 
 	damaged.emit(amount)
 	_emit_health_changed()
@@ -52,4 +51,4 @@ func get_health_percent() -> float:
 	return float(current_health) / float(max_health)
 
 func _emit_health_changed() -> void:
-	health_changed.emit(current_health, max_health)
+	health_changed.emit(current_health)

@@ -10,8 +10,7 @@ var score: int = 0:
 
 var health: int = 100:
 	set(value):
-		health = value
-		health = clamp(health, 0, 100)
+		health = clamp(value, 0, 100)
 		health_changed.emit(health)
 
 func add_points(points: int):
