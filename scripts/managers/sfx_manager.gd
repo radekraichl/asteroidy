@@ -4,7 +4,7 @@
 extends Node
 
 # --- Configuration ---
-const MAX_CHANNELS := 16      # Maximum number of simultaneously playing sounds
+const MAX_PLAYERS := 16       # Maximum number of simultaneously playing sounds
 const DEFAULT_BUS := "SFX"    # Audio bus name (must exist in Audio > Buses, or use "Master")
 
 # ---------------------------------------------
@@ -58,64 +58,51 @@ func stop_all() -> void:
 #  Internal helpers
 # ---------------------------------------------
 
-## Returns a free non-positional player from the pool,
-## creates a new one if the pool isn't full, or recycles the oldest one.
 func _get_player() -> AudioStreamPlayer:
-	# Look for an idle player already in the pool
 	for p in get_children():
 		if p is AudioStreamPlayer and not p.playing:
 			return p
 
-	# Pool has room — spawn a new player
-	if _count_players() < MAX_CHANNELS:
+	if _count_players() < MAX_PLAYERS:
 		return _create_player()
 
-	# Pool is full — steal the oldest channel to avoid sound starvation
-	push_warning("SfxManager: channel pool is full (%d/%d), recycling oldest player" % [_count_players(), MAX_CHANNELS])
+	push_warning("SfxManager: channel pool is full (%d/%d), recycling oldest player" % [_count_players(), MAX_PLAYERS])
 	return _recycle_oldest()
 
-## Returns a free 2D player from the pool,
-## creates a new one if the pool isn't full, or recycles the oldest one.
 func _get_player_2d() -> AudioStreamPlayer2D:
 	for p in get_children():
 		if p is AudioStreamPlayer2D and not p.playing:
 			return p
 
-	if _count_players() < MAX_CHANNELS:
+	if _count_players() < MAX_PLAYERS:
 		return _create_player_2d()
 
-	push_warning("SfxManager: 2D channel pool is full (%d/%d), recycling oldest player" % [_count_players(), MAX_CHANNELS])
+	push_warning("SfxManager: 2D channel pool is full (%d/%d), recycling oldest player" % [_count_players(), MAX_PLAYERS])
 	return _recycle_oldest_2d()
 
-## Creates a new non-positional AudioStreamPlayer and adds it to the pool
 func _create_player() -> AudioStreamPlayer:
 	var p := AudioStreamPlayer.new()
 	p.bus = DEFAULT_BUS
 	add_child(p)
 	return p
 
-## Creates a new positional AudioStreamPlayer2D and adds it to the pool
 func _create_player_2d() -> AudioStreamPlayer2D:
 	var p := AudioStreamPlayer2D.new()
 	p.bus = DEFAULT_BUS
 	add_child(p)
 	return p
 
-## Returns the total number of players currently in the pool (both types combined)
 func _count_players() -> int:
 	return get_child_count()
 
-## Stops and returns the first non-positional player found (oldest by child order)
 func _recycle_oldest() -> AudioStreamPlayer:
 	for p in get_children():
 		if p is AudioStreamPlayer:
 			p.stop()
 			return p
-	# Fallback: no non-positional player exists yet, create one
 	push_warning("SfxManager: no AudioStreamPlayer found to recycle, creating a new one")
 	return _create_player()
 
-## Stops and returns the first 2D player found (oldest by child order)
 func _recycle_oldest_2d() -> AudioStreamPlayer2D:
 	for p in get_children():
 		if p is AudioStreamPlayer2D:

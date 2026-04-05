@@ -312,8 +312,11 @@ asteroid_scene = ExtResource("10_e1cbu")
 [node name="AsteroidContainer" type="Node2D" parent="." unique_id=1217039606]
 unique_name_in_owner = true
 
-[node name="Node2D" parent="." unique_id=1286018886 instance=ExtResource("22_adb74")]
-position = Vector2(491, 109)
+[node name="HelathBonus" parent="." unique_id=1286018886 instance=ExtResource("22_adb74")]
+position = Vector2(496, 143)
+
+[node name="HelathBonus2" parent="." unique_id=17679548 instance=ExtResource("22_adb74")]
+position = Vector2(422, 158)
 
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="PauseMenu" method="_on_settings_button_pressed"]

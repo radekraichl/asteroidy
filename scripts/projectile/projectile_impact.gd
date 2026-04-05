@@ -1,4 +1,5 @@
 extends Node
+class_name ProjectileImpact
 
 @onready var animation: AnimatedSprite2D = $Impact
 @onready var particles: CPUParticles2D = $Particles

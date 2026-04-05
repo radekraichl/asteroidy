@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://bngocyu2waci6" path="res://scripts/space_movement.gd" id="3_n6kr8"]
 [ext_resource type="Script" uid="uid://bovhliyr7f8m7" path="res://scripts/health.gd" id="3_sa8sl"]
 [ext_resource type="Texture2D" uid="uid://c41i5mst6l6da" path="res://assets/health_bonus_particle.png" id="6_8asgw"]
-[ext_resource type="Texture2D" uid="uid://csrqgps6ampmr" path="res://assets/vfx/bonus_explosion.png" id="8_66v34"]
+[ext_resource type="Texture2D" uid="uid://dceie2wv0fa04" path="res://assets/vfx/bonus_explosion.png" id="8_66v34"]
+[ext_resource type="AudioStream" uid="uid://dqdm7c0d4ea1s" path="res://assets/sfx/health_bonus_explosion_sfx.wav" id="9_66v34"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t1fe4"]
 radius = 13.0
@@ -140,9 +141,9 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="Curve" id="Curve_8asgw"]
-_data = [Vector2(0, 1), 0.0, 1.4210597, 0, 0, Vector2(0.83629894, 0), -6.832716, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Gradient" id="Gradient_sa8sl"]
+offsets = PackedFloat32Array(0.5294118, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6dkt"]
 atlas = ExtResource("8_66v34")
@@ -232,13 +233,21 @@ animations = [{
 "texture": SubResource("AtlasTexture_e7ete")
 }],
 "loop": false,
-"name": &"default",
-"speed": 16.0
+"name": &"explode",
+"speed": 24.0
 }]
 
 [node name="HelathBonus" type="Node2D" unique_id=1286018886]
 script = ExtResource("1_pd7rf")
-sfx = ExtResource("2_t1fe4")
+impact_color = Color(0.8551318, 0.27009988, 0.27009988, 1)
+heal_sfx = ExtResource("2_t1fe4")
+explosion_sfx = ExtResource("9_66v34")
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1475557028]
+collision_layer = 16
+
+[node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea" unique_id=140807966]
+shape = SubResource("CapsuleShape2D_t1fe4")
 
 [node name="Wrap" type="Node" parent="." unique_id=836712399]
 script = ExtResource("1_cu8pv")
@@ -246,15 +255,14 @@ metadata/_custom_type_script = "uid://lvrskocj52e4"
 
 [node name="Health" type="Node" parent="." unique_id=1364588050]
 script = ExtResource("3_sa8sl")
-current_health = 20
+current_health = 60
 metadata/_custom_type_script = "uid://bovhliyr7f8m7"
 
-[node name="CollisionArea" type="Area2D" parent="." unique_id=1475557028]
-visible = false
-collision_layer = 16
-
-[node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea" unique_id=140807966]
-shape = SubResource("CapsuleShape2D_t1fe4")
+[node name="SpaceMovement" type="Node2D" parent="." unique_id=1626180580]
+script = ExtResource("3_n6kr8")
+can_move = false
+speed_range = Vector2(50, 80)
+direction = Vector2(1, 1.5)
 
 [node name="BonusSpriteAnim" type="AnimatedSprite2D" parent="." unique_id=1618007502]
 z_index = 10
@@ -262,34 +270,31 @@ sprite_frames = SubResource("SpriteFrames_jhxof")
 animation = &"health_bonus_anim"
 autoplay = "health_bonus_anim"
 
-[node name="SpaceMovement" type="Node2D" parent="." unique_id=1626180580]
-visible = false
-script = ExtResource("3_n6kr8")
-can_move = false
-speed_range = Vector2(50, 80)
-direction = Vector2(1, 1.5)
-
 [node name="Particles" type="CPUParticles2D" parent="." unique_id=2024069346]
-amount = 15
+amount = 25
 texture = ExtResource("6_8asgw")
-lifetime = 0.5
+lifetime = 1.4000000000000001
 explosiveness = 1.0
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 80.0
-initial_velocity_max = 100.0
-angular_velocity_max = 100.0
+initial_velocity_min = 5.0
+initial_velocity_max = 40.0
 orbit_velocity_max = 0.1
 damping_max = 20.0
-scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_8asgw")
 color = Color(0.5460356, 0.12219535, 0.12219535, 1)
+color_ramp = SubResource("Gradient_sa8sl")
 
 [node name="ExplosionAnim" type="AnimatedSprite2D" parent="." unique_id=1781639371]
-self_modulate = Color(0.6381068, 0.17293487, 0.121817045, 1)
+self_modulate = Color(0.78431374, 0.27863452, 0.12941174, 1)
 sprite_frames = SubResource("SpriteFrames_cqn81")
+animation = &"explode"
 frame = 11
 frame_progress = 1.0
+
+[node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="." unique_id=469726988]
+stream = ExtResource("9_66v34")
+volume_db = 14.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_area_2d_area_entered"]

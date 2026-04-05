@@ -27,7 +27,7 @@ var angular_velocity: float = 0.0
 
 # projectile
 @export var projectile_scene : PackedScene
-@onready var projectile_sfx : AudioStreamPlayer2D = $ProjectileSFX
+@export var projectile_sfx : AudioStream
 
 # health
 @onready var health: Health = $Health
@@ -117,7 +117,7 @@ func _shoot() -> void:
 	projectile.global_rotation = global_rotation
 	get_parent().add_child(projectile)
 	projectile.disable_layer(LayerManager.Layer.SHIP)
-	projectile_sfx.play()
+	SfxManager.play_2d(projectile_sfx, global_position)
 
 func _on_area_2d_body_entered(body) -> void:
 	_handle_contact(body)

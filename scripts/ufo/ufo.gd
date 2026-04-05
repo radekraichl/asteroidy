@@ -38,7 +38,7 @@ var target_speed: float
 
 var _scheduler := RandomEventScheduler.new()
 var _projectile_scene: PackedScene = preload("res://scenes/projectile/ufo_projectile.tscn")
-var missile_impact: PackedScene = preload("res://scenes/projectile/projectile_impact.tscn")
+var projectile_impact: PackedScene = preload("res://scenes/projectile/projectile_impact.tscn")
 
 func _ready() -> void:
 	# play ufo sfx
@@ -89,7 +89,7 @@ func hit(hit_info: HitInfo) -> void:
 		StatManager.add_points(score_on_hit + extra_bonus)
 
 		# impact
-		var impact := missile_impact.instantiate()
+		var impact := projectile_impact.instantiate()
 		impact.color = impact_color
 		impact.position = to_local(hit_info.position)
 		add_child(impact)
