@@ -1,6 +1,8 @@
 extends Node2D
 class_name HealthBonus
 
+const HIT_PENALTY = 5
+
 @export var heal_bonus: int = 70
 @export var impact_color: Color
 @export var heal_sfx: AudioStream
@@ -17,6 +19,7 @@ var projectile_impact: PackedScene = preload("res://scenes/projectile/projectile
 
 func hit(hit_info: HitInfo) -> void:
 	_health.take_damage(hit_info.damage)
+	heal_bonus -= HIT_PENALTY
 
 	# impact
 	var impact: ProjectileImpact = projectile_impact.instantiate()
