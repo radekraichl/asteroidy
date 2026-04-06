@@ -9,7 +9,8 @@ class_name HealthBonus
 @onready var _particles: CPUParticles2D = $Particles
 @onready var _health: Health = $Health
 @onready var _collision: CollisionShape2D = $CollisionArea/CollisionShape
-@onready var _sprite: AnimatedSprite2D = $BonusSpriteAnim
+@onready var _sprite: Sprite2D = $BonusSprite
+@onready var _sprite_anim: AnimatedSprite2D = $BonusSpriteAnim
 @onready var _explosion_anim: AnimatedSprite2D = $ExplosionAnim
 
 var projectile_impact: PackedScene = preload("res://scenes/projectile/projectile_impact.tscn")
@@ -27,6 +28,7 @@ func hit(hit_info: HitInfo) -> void:
 func disable() -> void:
 	_collision.set_deferred("disabled", true)
 	_sprite.visible = false
+	_sprite_anim.visible = false
 
 func _ready() -> void:
 	_sprite.visible = true
@@ -34,6 +36,11 @@ func _ready() -> void:
 	_particles.emitting = false
 
 	_health.died.connect(_on_died)
+	_health.health_changed.connect(_on_health_changed)
+
+func _on_health_changed(new_health: int):
+	var damaged: bool = _health.get_health_percentage() <= 50
+	_sprite.frame = 1 if damaged else 0
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_collision_layer_value(LayerManager.Layer.SHIP):
