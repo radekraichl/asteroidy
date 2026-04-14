@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b4l4gbd758xm2"
-path="res://.godot/imported/ari-w9500-condensed.ttf-e2731f53dd7ecb10715da267574b0d8d.fontdata"
+uid="uid://b34u0er7etohv"
+path="res://.godot/imported/ari-w9500.ttf-11cc7bd13453b23fcd11ade64269ea95.fontdata"
 
 [deps]
 
-source_file="res://assets/ari_w9500/ari-w9500-condensed.ttf"
-dest_files=["res://.godot/imported/ari-w9500-condensed.ttf-e2731f53dd7ecb10715da267574b0d8d.fontdata"]
+source_file="res://assets/font/ari-w9500.ttf"
+dest_files=["res://.godot/imported/ari-w9500.ttf-11cc7bd13453b23fcd11ade64269ea95.fontdata"]
 
 [params]
 

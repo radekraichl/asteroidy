@@ -2,18 +2,18 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cg8roop8l5qf8"
-path="res://.godot/imported/ari-w9500-bold.ttf-2c569810ad5660b2f43fe13abeea135c.fontdata"
+uid="uid://b4l4gbd758xm2"
+path="res://.godot/imported/ari-w9500-condensed.ttf-8fb3b700f6bcbe4fd14c87f435b51d18.fontdata"
 
 [deps]
 
-source_file="res://assets/ari_w9500/ari-w9500-bold.ttf"
-dest_files=["res://.godot/imported/ari-w9500-bold.ttf-2c569810ad5660b2f43fe13abeea135c.fontdata"]
+source_file="res://assets/font/ari-w9500-condensed.ttf"
+dest_files=["res://.godot/imported/ari-w9500-condensed.ttf-8fb3b700f6bcbe4fd14c87f435b51d18.fontdata"]
 
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -30,12 +30,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

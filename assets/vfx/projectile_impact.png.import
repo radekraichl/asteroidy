@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4r1k5xifcnkx"
-path="res://.godot/imported/explosion_asteroid_bg.png-80c65448dd84fe054369edd448416b8e.ctex"
+uid="uid://s430da7g7up7"
+path="res://.godot/imported/projectile_impact.png-7afe58ea507e4ebca44dbde93c607eb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/explosion_asteroid_bg.png"
-dest_files=["res://.godot/imported/explosion_asteroid_bg.png-80c65448dd84fe054369edd448416b8e.ctex"]
+source_file="res://assets/vfx/projectile_impact.png"
+dest_files=["res://.godot/imported/projectile_impact.png-7afe58ea507e4ebca44dbde93c607eb5.ctex"]
 
 [params]
 

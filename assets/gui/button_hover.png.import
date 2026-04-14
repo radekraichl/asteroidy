@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b15r8wdx88ki2"
-path="res://.godot/imported/explosion_asteroid_sm.png-4e3eed2cc71c22ad493f66b9cde03a70.ctex"
+uid="uid://bbdonli1sg8fs"
+path="res://.godot/imported/button_hover.png-659fe50d65aeb05a6b3f17911a36e7da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/explosion_asteroid_sm.png"
-dest_files=["res://.godot/imported/explosion_asteroid_sm.png-4e3eed2cc71c22ad493f66b9cde03a70.ctex"]
+source_file="res://assets/gui/button_hover.png"
+dest_files=["res://.godot/imported/button_hover.png-659fe50d65aeb05a6b3f17911a36e7da.ctex"]
 
 [params]
 

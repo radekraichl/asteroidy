@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djrnmuf5wbs7a"
-path="res://.godot/imported/projectile_impact.png-a25007dcc3c8f5b89230b5e266bd3694.ctex"
+uid="uid://b3p5ej225t1ox"
+path="res://.godot/imported/button_normal.png-9c4ffaced500e7036030927ae502748c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/projectile_impact.png"
-dest_files=["res://.godot/imported/projectile_impact.png-a25007dcc3c8f5b89230b5e266bd3694.ctex"]
+source_file="res://assets/aseprite/button_normal.png"
+dest_files=["res://.godot/imported/button_normal.png-9c4ffaced500e7036030927ae502748c.ctex"]
 
 [params]
 
