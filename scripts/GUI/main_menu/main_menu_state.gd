@@ -1,66 +1,45 @@
 class_name MainMenuState
 extends BaseState
 
-@export var button_focus_sfx: AudioStream
+const MENU_ENTER_FADE_DURATION = 0.8
+const MENU_EXIT_FADE_DURATION = 0.2
+const MENU_CHANGE_FADE_DURATION = 0.15
 
-@onready var _main_menu: Control = %MainMenuControl
 @onready var _fade_panel: FadePanel = %FadePanel
 
-# buttons
-@onready var _new_game_button: Button = %NewGameButton
-@onready var _exit_button: Button = %ExitButton
-@onready var _buttons: Array = [_new_game_button, _exit_button]
+@onready var _main_menu: Control = %MainMenuControl
+@onready var _settings_menu: Control = %SettingsMenuControl
 
-var _ignore_next_focus: bool = false
-var _using_mouse: bool = true
+@onready var _new_game_button: Button = %NewGameButton
+@onready var _settings_menu_button: Button = %SettingsMenuButton
+@onready var _exit_button: Button = %ExitButton
+
+@onready var _last_focused: Control
 
 func _ready() -> void:
 	_fade_panel.set_faded()
-	_fade_panel.fade_out(1)
-	_ignore_next_focus = true
+	_fade_panel.fade_out(MENU_ENTER_FADE_DURATION)
 	_exit_button.pressed.connect(_on_exit_button_pressed)
-
-	for btn: Button in _buttons:
-		btn.mouse_entered.connect(_on_button_mouse_entered.bind(btn))
-		btn.focus_entered.connect(_on_button_focus)
-
-func _on_button_mouse_entered(btn: Button) -> void:
-	btn.grab_focus()
-
-func _enable_mouse(enable: bool) -> void:
-	var mode := Control.MOUSE_FILTER_STOP if enable else Control.MOUSE_FILTER_IGNORE
-	for btn in _buttons:
-		btn.mouse_filter = mode
-
-func _on_button_focus() -> void:
-	if _ignore_next_focus:
-		_ignore_next_focus = false
-		return
-
-	SfxManager.play(button_focus_sfx, 0.0, 1.45)
+	_settings_menu_button.pressed.connect(_on_settings_button_pressed)
+	_last_focused = _new_game_button
 
 func _on_exit_button_pressed() -> void:
-	_fade_panel.fade_in()
+	_fade_panel.fade_in(MENU_EXIT_FADE_DURATION)
 	await _fade_panel.fade_finished
 	get_tree().quit()
 
+func _on_settings_button_pressed() -> void:
+	_fade_panel.fade_in(MENU_CHANGE_FADE_DURATION)
+	await _fade_panel.fade_finished
+	change_state(SettingsMenuState)
 
-# ------------------------------------------------------------
 # State Machine Methods
-# ------------------------------------------------------------
-
 func enter(_msg: Dictionary = {}):
+	if _fade_panel.get_state() == _fade_panel.FadeState.FADED:
+		_fade_panel.fade_out(MENU_CHANGE_FADE_DURATION)
+	_last_focused.grab_focus()
 	_main_menu.visible = true
-	_new_game_button.grab_focus()
+	_settings_menu.visible = false
 
 func exit() -> void:
 	_main_menu.visible = false
-
-func input(event: InputEvent):
-	if event is InputEventMouseMotion:
-		_using_mouse = true
-		_enable_mouse(true)
-
-	elif event is InputEventKey or event is InputEventJoypadButton:
-		_using_mouse = false
-		_enable_mouse(false)

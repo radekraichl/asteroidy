@@ -25,5 +25,5 @@ func unhandled_input(_event: InputEvent) -> void:
 func unhandled_key_input(_event: InputEvent) -> void:
 	pass
 
-func transition_to(state_script: GDScript, msg: Dictionary = {}) -> void:
-	state_machine.transition_to(state_script, msg)
+func change_state(state_script: GDScript, msg: Dictionary = {}) -> void:
+	state_machine.change_state(state_script, msg)

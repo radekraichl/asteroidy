@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/button_focus.ogg" id="3_x41oi"]
 [ext_resource type="Script" uid="uid://r73kvvbjusru" path="res://scripts/gui/main_menu/settings_menu_state.gd" id="3_yx4et"]
 [ext_resource type="Theme" uid="uid://dhb0it06blrhy" path="res://resources/main_menu_theme.tres" id="4_pgo4t"]
+[ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="7_buj57"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1462006230]
 
@@ -15,13 +16,13 @@ initial_state = NodePath("MainMenuState")
 
 [node name="MainMenuState" type="Node" parent="MenuStateManager" unique_id=840005553]
 script = ExtResource("1_xbu81")
-button_focus_sfx = ExtResource("3_x41oi")
 
 [node name="SettingsMenuState" type="Node" parent="MenuStateManager" unique_id=1047760167]
 script = ExtResource("3_yx4et")
 
-[node name="FadePanel" type="ColorRect" parent="MenuStateManager" unique_id=104279483]
+[node name="FadePanel" type="ColorRect" parent="." unique_id=104279483]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +35,7 @@ metadata/_custom_type_script = "uid://dqqw5cpwf1cd1"
 
 [node name="MainMenuControl" type="Control" parent="." unique_id=1012968457]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +45,8 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_pgo4t")
+script = ExtResource("7_buj57")
+focus_sfx = ExtResource("3_x41oi")
 
 [node name="CenterContainer" type="CenterContainer" parent="MainMenuControl" unique_id=1391832214]
 layout_mode = 1
@@ -63,7 +67,50 @@ layout_mode = 2
 theme = ExtResource("4_pgo4t")
 text = "New Game"
 
+[node name="SettingsMenuButton" type="Button" parent="MainMenuControl/CenterContainer/VBoxContainer" unique_id=1799594385]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
 [node name="ExitButton" type="Button" parent="MainMenuControl/CenterContainer/VBoxContainer" unique_id=191775801]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
+
+[node name="SettingsMenuControl" type="Control" parent="." unique_id=1087033354]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_pgo4t")
+script = ExtResource("7_buj57")
+focus_sfx = ExtResource("3_x41oi")
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsMenuControl" unique_id=878830927]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenuControl/CenterContainer" unique_id=1643465994]
+layout_mode = 2
+
+[node name="SFXButton" type="Button" parent="SettingsMenuControl/CenterContainer/VBoxContainer" unique_id=1700235542]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_pgo4t")
+text = "SFX"
+
+[node name="BackButton" type="Button" parent="SettingsMenuControl/CenterContainer/VBoxContainer" unique_id=1071489295]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"

@@ -12,7 +12,7 @@ func _ready() -> void:
 			child.state_machine = self
 			child.actor = get_parent()
 	if initial_state:
-		transition_to(initial_state.get_script())
+		change_state(initial_state.get_script())
 
 func _process(delta: float) -> void:
 	if current_state:
@@ -34,7 +34,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if current_state:
 		current_state.unhandled_key_input(event)
 
-func transition_to(state_script: GDScript, msg: Dictionary = {}) -> void:
+func change_state(state_script: GDScript, msg: Dictionary = {}) -> void:
 	if not states.has(state_script):
 		push_error("StateMachine: state not found: %s" % state_script.resource_path)
 		return
