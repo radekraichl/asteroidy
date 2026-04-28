@@ -10,10 +10,10 @@ func enter(_msg: Dictionary = {}) -> void:
 func exit() -> void:
 	pass
 
-func update(_delta: float) -> void:
+func state_process(_delta: float) -> void:
 	pass
 
-func physics_update(_delta: float) -> void:
+func state_physics_process(_delta: float) -> void:
 	pass
 
 func input(_event: InputEvent) -> void:
@@ -25,5 +25,5 @@ func unhandled_input(_event: InputEvent) -> void:
 func unhandled_key_input(_event: InputEvent) -> void:
 	pass
 
-func change_state(state_script: GDScript, msg: Dictionary = {}) -> void:
-	state_machine.change_state(state_script, msg)
+func transition_to(state_script: GDScript, msg: Dictionary = {}) -> void:
+	state_machine.transition_to(state_script, msg)

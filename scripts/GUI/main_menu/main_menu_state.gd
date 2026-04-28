@@ -31,7 +31,7 @@ func _on_exit_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	_fade_panel.fade_in(MENU_CHANGE_FADE_DURATION)
 	await _fade_panel.fade_finished
-	change_state(SettingsMenuState)
+	transition_to(SettingsMenuState)
 
 # State Machine Methods
 func enter(_msg: Dictionary = {}):

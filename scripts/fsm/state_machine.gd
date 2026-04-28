@@ -3,7 +3,7 @@ extends Node
 
 @export var initial_state: BaseState
 var current_state: BaseState
-var states: Dictionary = {}
+var states: Dictionary[GDScript, BaseState] = {}
 
 func _ready() -> void:
 	for child in get_children():
@@ -12,15 +12,15 @@ func _ready() -> void:
 			child.state_machine = self
 			child.actor = get_parent()
 	if initial_state:
-		change_state(initial_state.get_script())
+		transition_to(initial_state.get_script())
 
 func _process(delta: float) -> void:
 	if current_state:
-		current_state.update(delta)
+		current_state.state_process(delta)
 
 func _physics_process(delta: float) -> void:
 	if current_state:
-		current_state.physics_update(delta)
+		current_state.state_physics_process(delta)
 
 func _input(event: InputEvent) -> void:
 	if current_state:
@@ -34,7 +34,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if current_state:
 		current_state.unhandled_key_input(event)
 
-func change_state(state_script: GDScript, msg: Dictionary = {}) -> void:
+func transition_to(state_script: GDScript, msg: Dictionary = {}) -> void:
 	if not states.has(state_script):
 		push_error("StateMachine: state not found: %s" % state_script.resource_path)
 		return
