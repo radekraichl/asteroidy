@@ -58,7 +58,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6u1mn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 10.0
 }, {
@@ -75,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4w45t")
 }],
-"loop": true,
+"loop": 1,
 "name": &"thrust",
 "speed": 15.0
 }]
@@ -139,7 +139,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u0fll")
 }],
-"loop": false,
+"loop": 0,
 "name": &"explosion",
 "speed": 10.0
 }]
@@ -160,7 +160,6 @@ wrap_margin = 8.0
 
 [node name="Health" type="Node" parent="." unique_id=1821139359]
 script = ExtResource("4_37jfo")
-current_health = 20
 metadata/_custom_type_script = "uid://bovhliyr7f8m7"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1844707874]

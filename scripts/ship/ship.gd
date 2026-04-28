@@ -49,11 +49,11 @@ func _physics_process(delta: float) -> void:
 
 	# input
 	turn_input = 0.0
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed(&"ui_left"):
 		turn_input -= 1.0
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed(&"ui_right"):
 		turn_input += 1.0
-	is_thrusting = Input.is_action_pressed("ui_up")
+	is_thrusting = Input.is_action_pressed(&"ui_up")
 
 	# angular acceleration
 	angular_velocity += turn_input * rotation_accel * delta
@@ -99,15 +99,15 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(velocity * delta)
 
 	# shoot input
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed(&"shoot"):
 		_shoot()
 
 	# thrusting animation
 	if is_thrusting != was_thrusting:
 		if is_thrusting:
-			plumes.play("thrust")
+			plumes.play(&"thrust")
 		else:
-			plumes.play("idle")
+			plumes.play(&"idle")
 	was_thrusting = is_thrusting
 
 func _shoot() -> void:

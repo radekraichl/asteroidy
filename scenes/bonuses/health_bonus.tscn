@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://l7d2n64m3ebg"]
 
 [ext_resource type="Script" uid="uid://lvrskocj52e4" path="res://scripts/wrap.gd" id="1_cu8pv"]
-[ext_resource type="Script" uid="uid://bbxdg5xdkkfcm" path="res://scripts/health_bonus.gd" id="1_pd7rf"]
+[ext_resource type="Script" uid="uid://bbxdg5xdkkfcm" path="res://scripts/bonuses/health_bonus.gd" id="1_pd7rf"]
 [ext_resource type="Texture2D" uid="uid://d1lp4t2nfpvmq" path="res://assets/health_bonus.png" id="1_xoe3d"]
 [ext_resource type="AudioStream" uid="uid://cojqgho8amnc6" path="res://assets/sfx/health_bonus.wav" id="2_t1fe4"]
 [ext_resource type="Script" uid="uid://bngocyu2waci6" path="res://scripts/space_movement.gd" id="3_n6kr8"]

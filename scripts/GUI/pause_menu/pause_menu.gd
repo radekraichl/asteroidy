@@ -37,7 +37,6 @@ func set_screen(screen : Screen):
 			show()
 
 			if fade_panel.get_state() == fade_panel.FadeState.CLEAR:
-				print("fade")
 				fade_panel.fade_in()
 
 			menu_root.show()
