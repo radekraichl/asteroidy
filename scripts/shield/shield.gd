@@ -20,7 +20,6 @@ var missile_impact: PackedScene = preload("res://scenes/projectile/projectile_im
 var _shield_timer: Timer
 
 func _ready() -> void:
-	push_warning("SHIELD BUG - po zniceni UFO pres shield stale existuji nejake kolize")
 	self_modulate = shield_color
 	set_enabled(false)
 

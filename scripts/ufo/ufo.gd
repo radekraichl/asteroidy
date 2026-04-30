@@ -27,7 +27,7 @@ const SHOOTING_TIMER_NAME = "shooting_timer"
 @onready var _wrap: Wrap = $Wrap
 
 # SFX
-@onready var _explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
+@export var _explosion_sfx: AudioStream
 @onready var _ufo_sfx: AudioStreamPlayer2D = $UFOSFX
 @onready var _projectile_sfx: AudioStreamPlayer2D = $ProjectileSFX
 
@@ -164,13 +164,11 @@ func _on_died() -> void:
 	$Sprite2D.visible = false
 	_explosion_anim.visible = true
 
+	SfxManager.play_2d(_explosion_sfx, global_position, 8)
 	_explosion_anim.play("explode")
-	_explosion_sfx.play()
 	var anim_finished = _explosion_anim.animation_finished
-	var sfx_finished = _explosion_sfx.finished
 	anim_finished.connect(func(): _explosion_anim.visible = false)
 	await anim_finished
-	await sfx_finished
 	queue_free()
 
 func _on_health_changed(_current_hp) -> void:

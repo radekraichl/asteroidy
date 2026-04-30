@@ -31,22 +31,6 @@ font_color = Color(0.99607843, 0.9529412, 0.7529412, 0.7058824)
 
 [node name="GameScene" type="Node2D" unique_id=1709177522]
 
-[node name="GameCanvasLayer" type="CanvasLayer" parent="." unique_id=398275357]
-
-[node name="FadePanel" type="ColorRect" parent="GameCanvasLayer" unique_id=240258933]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
-script = ExtResource("1_s76x2")
-fade_duration = 0.5
-metadata/_custom_type_script = "uid://dqqw5cpwf1cd1"
-
 [node name="Background" type="Node2D" parent="." unique_id=558508590]
 script = ExtResource("1_mwyo0")
 
@@ -213,3 +197,19 @@ unique_name_in_owner = true
 
 [node name="UFO" parent="." unique_id=1375694361 instance=ExtResource("17_ngbhp")]
 position = Vector2(501, 149)
+
+[node name="GameCanvasLayer" type="CanvasLayer" parent="." unique_id=398275357]
+
+[node name="FadePanel" type="ColorRect" parent="GameCanvasLayer" unique_id=240258933]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_s76x2")
+fade_duration = 0.5
+metadata/_custom_type_script = "uid://dqqw5cpwf1cd1"

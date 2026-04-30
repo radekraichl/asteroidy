@@ -37,12 +37,10 @@ func enter_main_menu():
 	pass
 
 func enter_game():
-	await get_tree().tree_changed
+	await get_tree().scene_changed
 	var fade_panel: FadePanel = get_tree().current_scene.get_node(^"GameCanvasLayer/FadePanel")
 	fade_panel.show()
 	fade_panel.fade_out()
-
-
 	get_tree().paused = false
 
 func enter_game_over():

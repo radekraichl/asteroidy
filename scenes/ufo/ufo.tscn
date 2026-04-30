@@ -72,7 +72,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5rfrm")
 }],
-"loop": false,
+"loop": 0,
 "name": &"explode",
 "speed": 16.0
 }]
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4l4ni")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 12.0
 }]
@@ -135,6 +135,7 @@ can_play_sfx = false
 turn_speed = 8.0
 score_on_hit = 300
 max_extra_bonus = 40
+_explosion_sfx = ExtResource("6_linyg")
 
 [node name="Wrap" parent="." unique_id=1397656902 instance=ExtResource("2_1aa4c")]
 
@@ -167,6 +168,8 @@ sprite_frames = SubResource("SpriteFrames_bwq4s")
 autoplay = "default"
 script = ExtResource("7_tkk3j")
 can_play_sfx = false
+score_on_hit = 1
+damage_on_hit = 10
 shield_color = Color(0.57248807, 0.7342963, 0.8880144, 1)
 impact_color = Color(0.33792648, 0.5753853, 0.8025197, 1)
 particles_color = Color(0.6866938, 0.79920435, 0.90774393, 1)
