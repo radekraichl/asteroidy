@@ -21,6 +21,12 @@ func set_faded() -> void:
 	visible = true
 	_state = FadeState.FADED
 
+func set_clear() -> void:
+	_kill_tween()
+	self_modulate.a = 0.0
+	visible = false
+	_state = FadeState.CLEAR
+
 func fade_in(duration: float = -1.0) -> void:
 	if duration <= 0.0:
 		duration = fade_duration

@@ -23,7 +23,7 @@ script = ExtResource("3_yx4et")
 [node name="FadePanel" type="ColorRect" parent="." unique_id=104279483]
 unique_name_in_owner = true
 visible = false
-z_index = 1
+z_index = 1000
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,7 +35,6 @@ metadata/_custom_type_script = "uid://dqqw5cpwf1cd1"
 
 [node name="MainMenuControl" type="Control" parent="." unique_id=1012968457]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +78,7 @@ text = "Exit"
 
 [node name="SettingsMenuControl" type="Control" parent="." unique_id=1087033354]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

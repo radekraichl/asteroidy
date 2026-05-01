@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bstit0er0uc8b"]
 
 [ext_resource type="Script" uid="uid://veeu7hiraxc1" path="res://scripts/background/background.gd" id="1_mwyo0"]
-[ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/gui/fade_panel.gd" id="1_s76x2"]
 [ext_resource type="Script" uid="uid://c06fx4od62njj" path="res://scripts/background/starfield_generator.gd" id="2_s76x2"]
 [ext_resource type="Texture2D" uid="uid://bb328j4udh1n5" path="res://assets/stars.png" id="3_77hjl"]
 [ext_resource type="PackedScene" uid="uid://dm1jw10c6jvt1" path="res://scenes/gui/fps_counter.tscn" id="4_6aqbo"]
@@ -13,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cils70phfdhxb" path="res://scripts/gui/hud/health_bar.gd" id="10_ttvoq"]
 [ext_resource type="PackedScene" uid="uid://cajrad5otf2am" path="res://scenes/gui/pause_menu.tscn" id="11_rw4oa"]
 [ext_resource type="Script" uid="uid://va2o05eat8pu" path="res://scripts/gui/game_over.gd" id="12_r47aq"]
-[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/ui_theme.tres" id="13_6irsn"]
+[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/pause_menu_theme.tres" id="13_6irsn"]
 [ext_resource type="PackedScene" uid="uid://oqbv7cng5h6" path="res://scenes/ship/ship.tscn" id="14_gqftm"]
 [ext_resource type="Script" uid="uid://ec4ha37blckq" path="res://scripts/managers/spawn_manager.gd" id="15_5dk4p"]
 [ext_resource type="PackedScene" uid="uid://clww1ko6j4axm" path="res://scenes/asteroids/asteroid_big.tscn" id="16_bpk3j"]
@@ -197,19 +196,3 @@ unique_name_in_owner = true
 
 [node name="UFO" parent="." unique_id=1375694361 instance=ExtResource("17_ngbhp")]
 position = Vector2(501, 149)
-
-[node name="GameCanvasLayer" type="CanvasLayer" parent="." unique_id=398275357]
-
-[node name="FadePanel" type="ColorRect" parent="GameCanvasLayer" unique_id=240258933]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 0, 0, 1)
-script = ExtResource("1_s76x2")
-fade_duration = 0.5
-metadata/_custom_type_script = "uid://dqqw5cpwf1cd1"

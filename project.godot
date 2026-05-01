@@ -24,20 +24,18 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 Setup="*uid://ccpg3qup2jxtb"
 SettingsManager="*uid://ctt3ejimknnbp"
 GameManager="*uid://bijra1q08a2mq"
-LayerManager="*uid://8u5re4qcmech"
 StatManager="*uid://bs4knau0k5p1t"
 SfxManager="*uid://bdh5xdswsryqh"
+LayerManager="*uid://8u5re4qcmech"
+SceneManager="*uid://beghw4ov26gyo"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
-
-[editor_plugins]
-
-enabled=PackedStringArray()
 
 [input]
 

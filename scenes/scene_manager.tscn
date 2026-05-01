@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://beghw4ov26gyo"]
+
+[ext_resource type="Script" uid="uid://dmcr1yujb7a20" path="res://scripts/managers/scene_manager.gd" id="1_efx10"]
+[ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/gui/fade_panel.gd" id="2_k8poj"]
+
+[node name="SceneManager" type="CanvasLayer" unique_id=1237977655]
+layer = 10
+script = ExtResource("1_efx10")
+
+[node name="FadePanel" type="ColorRect" parent="." unique_id=380537813]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_k8poj")
+fade_duration = 0.6
+metadata/_custom_type_script = "uid://dqqw5cpwf1cd1"

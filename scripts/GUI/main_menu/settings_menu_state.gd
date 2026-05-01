@@ -32,4 +32,6 @@ func exit() -> void:
 
 func unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
+		_fade_panel.fade_in(MENU_CHANGE_FADE_DURATION)
+		await _fade_panel.fade_finished
 		transition_to(MainMenuState)

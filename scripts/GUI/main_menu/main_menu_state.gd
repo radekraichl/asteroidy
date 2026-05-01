@@ -1,8 +1,6 @@
 class_name MainMenuState
 extends BaseState
 
-const MENU_ENTER_FADE_DURATION = 0.8
-const NEW_GAME_FADE_DURATION = 0.5
 const MENU_EXIT_FADE_DURATION = 0.2
 const MENU_CHANGE_FADE_DURATION = 0.15
 
@@ -20,17 +18,14 @@ const MENU_CHANGE_FADE_DURATION = 0.15
 
 func _ready() -> void:
 	GameManager.set_state(GameManager.GameState.MAIN_MENU)
-	_fade_panel.set_faded()
-	_fade_panel.fade_out(MENU_ENTER_FADE_DURATION)
+	_fade_panel.set_clear()
 	_new_game_button.pressed.connect(_on_new_game_button_pressed)
 	_settings_menu_button.pressed.connect(_on_settings_button_pressed)
 	_exit_button.pressed.connect(_on_exit_button_pressed)
 	_last_focused = _new_game_button
 
 func _on_new_game_button_pressed() -> void:
-	_fade_panel.fade_in(NEW_GAME_FADE_DURATION)
-	await _fade_panel.fade_finished
-	get_tree().change_scene_to_packed(GameManager.GAME_SCENE)
+	SceneManager.change_scene_packed(GameManager.GAME_SCENE)
 	GameManager.set_state(GameManager.GameState.GAME)
 
 func _on_exit_button_pressed() -> void:

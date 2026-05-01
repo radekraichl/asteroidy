@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://td5o3in76l7v" path="res://scripts/gui/pause_menu/pause_menu.gd" id="1_a81cd"]
 [ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/gui/fade_panel.gd" id="2_11l0y"]
-[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/ui_theme.tres" id="3_1oj2q"]
+[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/pause_menu_theme.tres" id="3_1oj2q"]
 [ext_resource type="Script" uid="uid://om8kwvduykse" path="res://scripts/gui/pause_menu/in_game_settings.gd" id="4_uixhc"]
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/button_focus.ogg" id="5_1svuw"]
 [ext_resource type="AudioStream" uid="uid://bg2w4eqs2s1x0" path="res://assets/sfx/pause_menu_open_close.ogg" id="6_vvthd"]
@@ -23,7 +23,6 @@ color = Color(0.007843138, 0, 0.03137255, 0.78431374)
 script = ExtResource("2_11l0y")
 
 [node name="MenuRoot" type="Control" parent="." unique_id=810723726]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +51,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1579071189]
 layout_mode = 2
+theme = ExtResource("3_1oj2q")
 theme_type_variation = &"HeaderMedium"
 text = "Paused"
 horizontal_alignment = 1
@@ -71,6 +71,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="SettingsRoot" type="Control" parent="." unique_id=1394455843]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
