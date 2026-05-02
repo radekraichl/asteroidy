@@ -3,6 +3,8 @@ extends BaseState
 
 const MENU_CHANGE_FADE_DURATION = 0.15
 
+@export var open_close_sfx: AudioStream
+
 @onready var _fade_panel: FadePanel = %FadePanel
 @onready var _settings_menu: SettingsMenu = %SettingsMenu
 
@@ -10,6 +12,7 @@ func _ready() -> void:
 	_settings_menu.back_requested.connect(_on_settings_menu_back_requested)
 
 func transition_to_main_menu() -> void:
+	SfxManager.play(open_close_sfx, -4.0, 1.2)
 	_fade_panel.fade_in(MENU_CHANGE_FADE_DURATION)
 	await _fade_panel.fade_finished
 	transition_to(MainMenuState)

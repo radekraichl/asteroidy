@@ -4,10 +4,11 @@ extends BaseState
 const MENU_EXIT_FADE_DURATION = 0.2
 const MENU_CHANGE_FADE_DURATION = 0.15
 
-@onready var _fade_panel: FadePanel = %FadePanel
+@export var open_close_sfx: AudioStream
 
 @onready var _main_menu: Control = %MainMenuControl
 @onready var _settings_menu: Control = %SettingsMenu
+@onready var _fade_panel: FadePanel = %FadePanel
 
 # buttons
 @onready var _new_game_button: Button = %NewGameButton
@@ -31,6 +32,7 @@ func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_settings_button_pressed() -> void:
+	SfxManager.play(open_close_sfx, -4.0, 1.2)
 	_fade_panel.fade_in(MENU_CHANGE_FADE_DURATION)
 	await _fade_panel.fade_finished
 	transition_to(SettingsMenuState)

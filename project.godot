@@ -33,6 +33,7 @@ SceneManager="*uid://beghw4ov26gyo"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 

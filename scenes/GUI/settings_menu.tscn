@@ -39,6 +39,7 @@ layout_mode = 2
 script = ExtResource("3_n5fjd")
 default_focus = NodePath("SFX/SFXSlider")
 focus_sfx = ExtResource("4_rxl38")
+focus_sfx_volume_db = 2.0
 focus_sfx_pitch_scale = 1.45
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1940069996]

@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/ui/ui_focus.ogg" id="3_x41oi"]
 [ext_resource type="Script" uid="uid://r73kvvbjusru" path="res://scripts/gui/main_menu/settings_menu_state.gd" id="3_yx4et"]
 [ext_resource type="Theme" uid="uid://dhb0it06blrhy" path="res://resources/main_menu_theme.tres" id="4_pgo4t"]
+[ext_resource type="AudioStream" uid="uid://bg2w4eqs2s1x0" path="res://assets/sfx/ui/menu_open_close_sfx.ogg" id="4_sgfx1"]
 [ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="7_buj57"]
 [ext_resource type="PackedScene" uid="uid://b6vhu61s1w8ko" path="res://scenes/gui/settings_menu.tscn" id="8_lel3l"]
 
@@ -17,9 +18,11 @@ initial_state = NodePath("MainMenuState")
 
 [node name="MainMenuState" type="Node" parent="MenuStateManager" unique_id=840005553]
 script = ExtResource("1_xbu81")
+open_close_sfx = ExtResource("4_sgfx1")
 
 [node name="SettingsMenuState" type="Node" parent="MenuStateManager" unique_id=1047760167]
 script = ExtResource("3_yx4et")
+open_close_sfx = ExtResource("4_sgfx1")
 
 [node name="FadePanel" type="ColorRect" parent="." unique_id=104279483]
 unique_name_in_owner = true
@@ -48,6 +51,8 @@ theme = ExtResource("4_pgo4t")
 script = ExtResource("7_buj57")
 default_focus = NodePath("CenterContainer/VBoxContainer/NewGameButton")
 focus_sfx = ExtResource("3_x41oi")
+focus_sfx_volume_db = 4.0
+focus_sfx_pitch_scale = 1.4
 
 [node name="CenterContainer" type="CenterContainer" parent="MainMenuControl" unique_id=1391832214]
 layout_mode = 1
