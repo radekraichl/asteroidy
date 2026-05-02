@@ -7,7 +7,7 @@ const MENU_CHANGE_FADE_DURATION = 0.15
 @onready var _fade_panel: FadePanel = %FadePanel
 
 @onready var _main_menu: Control = %MainMenuControl
-@onready var _settings_menu: Control = %SettingsMenuControl
+@onready var _settings_menu: Control = %SettingsMenu
 
 # buttons
 @onready var _new_game_button: Button = %NewGameButton

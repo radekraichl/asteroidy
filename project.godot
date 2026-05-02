@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Asteroidy"
-run/main_scene="uid://bstit0er0uc8b"
+run/main_scene="uid://puwngnwhi1x1"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=200
 
@@ -33,7 +33,6 @@ SceneManager="*uid://beghw4ov26gyo"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/mode=3
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 
