@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://b6vhu61s1w8ko"]
+
+[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/pause_menu_theme.tres" id="1_rdapm"]
+[ext_resource type="Script" uid="uid://om8kwvduykse" path="res://scripts/gui/settings_menu.gd" id="2_n5fjd"]
+[ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="3_n5fjd"]
+[ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/ui/ui_focus.ogg" id="4_rxl38"]
+[ext_resource type="Script" uid="uid://c3w2ows4qun3m" path="res://scripts/gui/slider.gd" id="5_ff475"]
+[ext_resource type="AudioStream" uid="uid://b0os1wxx118e1" path="res://assets/sfx/ui/slider_move_sfx.ogg" id="6_rxl38"]
+
+[node name="SettingsMenu" type="Control" unique_id=497446991]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_rdapm")
+script = ExtResource("2_n5fjd")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1442726577]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1261612590]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=359221183]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=42037806 node_paths=PackedStringArray("default_focus")]
+layout_mode = 2
+script = ExtResource("3_n5fjd")
+default_focus = NodePath("SFX/SFXSlider")
+focus_sfx = ExtResource("4_rxl38")
+focus_sfx_pitch_scale = 1.45
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1940069996]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=841265412]
+layout_mode = 2
+columns = 3
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFX" unique_id=932833089]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Sound FX"
+
+[node name="SFXSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFX" unique_id=1034294644 node_paths=PackedStringArray("value_label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1)
+max_value = 10.0
+value = 10.0
+script = ExtResource("5_ff475")
+value_label = NodePath("../Value")
+slider_move_sfx = ExtResource("6_rxl38")
+sfx_volume_db = -8.0
+sfx_pitch_scale = 0.9
+
+[node name="Value" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SFX" unique_id=1469738005]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "10"
+horizontal_alignment = 2
+
+[node name="Music" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1855695835]
+layout_mode = 2
+columns = 3
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" unique_id=1740117108]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" unique_id=821396003 node_paths=PackedStringArray("value_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1)
+max_value = 10.0
+value = 10.0
+script = ExtResource("5_ff475")
+value_label = NodePath("../Value")
+slider_move_sfx = ExtResource("6_rxl38")
+sfx_volume_db = -8.0
+sfx_pitch_scale = 0.9
+
+[node name="Value" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Music" unique_id=1856697500]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "10"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2053980458]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1929257360]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

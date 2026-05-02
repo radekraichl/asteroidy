@@ -5,7 +5,7 @@ class_name PauseMenu
 @onready var focus_sound: AudioStreamPlayer = $FocusSFX
 @onready var open_close_sfx: AudioStreamPlayer = $OpenCloseSFX
 @onready var menu_root : Control = $MenuRoot
-@onready var settings_root : Control = $SettingsRoot
+@onready var settings_root : SettingsMenu = $SettingsMenu
 @onready var fade_panel : FadePanel = $FadePanel
 
 enum Screen {
@@ -15,10 +15,10 @@ enum Screen {
 }
 
 var current_screen : Screen
-var last_focused : Control
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	settings_root.back_requested.connect(_on_settings_menu_back_requested)
 
 func set_screen(screen : Screen):
 	current_screen = screen
@@ -41,21 +41,12 @@ func set_screen(screen : Screen):
 
 			menu_root.show()
 			settings_root.hide()
-			resume_button.grab_focus()
-			last_focused = resume_button
 		Screen.SETTINGS:
 			menu_root.hide()
 			settings_root.show()
-			settings_root.sfx_button.grab_focus()
-			last_focused = settings_root.sfx_button
 			open_close_sfx.play()
 
 func _unhandled_input(event):
-	var focused := get_viewport().gui_get_focus_owner()
-	if focused != last_focused and focused is Button:
-		last_focused = focused
-		focus_sound.play()
-
 	if GameManager.game_state == GameManager.GameState.GAME_OVER:
 		return
 	if fade_panel.get_state() == fade_panel.FadeState.FADING:
@@ -82,3 +73,7 @@ func _on_settings_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+# Handle back action from settings menu
+func _on_settings_menu_back_requested() -> void:
+	set_screen(Screen.PAUSED)

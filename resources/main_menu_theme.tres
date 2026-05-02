@@ -1,8 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://dhb0it06blrhy"]
 
 [ext_resource type="FontFile" uid="uid://dxb4oioc3ggja" path="res://assets/font/ari-w9500-display.ttf" id="1_uif2x"]
-[ext_resource type="Texture2D" uid="uid://bbdonli1sg8fs" path="res://assets/gui/button_focus.png" id="2_cdi7h"]
-[ext_resource type="Texture2D" uid="uid://cbi58r6g8p8nd" path="res://assets/gui/button_background.png" id="2_y1qaj"]
+[ext_resource type="Texture2D" uid="uid://bbdonli1sg8fs" path="res://assets/gui/button/main_menu_button_focus.png" id="2_cdi7h"]
+[ext_resource type="Texture2D" uid="uid://cbi58r6g8p8nd" path="res://assets/gui/button/main_menu_button_background.png" id="2_y1qaj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1qaj"]
 content_margin_left = 4.0

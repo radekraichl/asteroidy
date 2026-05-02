@@ -14,15 +14,12 @@ const MENU_CHANGE_FADE_DURATION = 0.15
 @onready var _settings_menu_button: Button = %SettingsMenuButton
 @onready var _exit_button: Button = %ExitButton
 
-@onready var _last_focused: Control
-
 func _ready() -> void:
 	GameManager.set_state(GameManager.GameState.MAIN_MENU)
 	_fade_panel.set_clear()
 	_new_game_button.pressed.connect(_on_new_game_button_pressed)
 	_settings_menu_button.pressed.connect(_on_settings_button_pressed)
 	_exit_button.pressed.connect(_on_exit_button_pressed)
-	_last_focused = _new_game_button
 
 func _on_new_game_button_pressed() -> void:
 	SceneManager.change_scene_packed(GameManager.GAME_SCENE)
@@ -42,7 +39,6 @@ func _on_settings_button_pressed() -> void:
 func enter(_msg: Dictionary = {}):
 	if _fade_panel.get_state() == _fade_panel.FadeState.FADED:
 		_fade_panel.fade_out(MENU_CHANGE_FADE_DURATION)
-	_last_focused.grab_focus()
 	_main_menu.visible = true
 	_settings_menu.visible = false
 

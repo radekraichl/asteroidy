@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Asteroidy"
-run/main_scene="uid://puwngnwhi1x1"
+run/main_scene="uid://bstit0er0uc8b"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=200
 
