@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6vhu61s1w8ko"]
 
-[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/pause_menu_theme.tres" id="1_rdapm"]
+[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/gui_theme.tres" id="1_rdapm"]
 [ext_resource type="Script" uid="uid://om8kwvduykse" path="res://scripts/gui/settings_menu.gd" id="2_n5fjd"]
 [ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="3_n5fjd"]
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/ui/ui_focus.ogg" id="4_rxl38"]

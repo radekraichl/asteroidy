@@ -4,7 +4,7 @@
 extends Node
 
 # --- Configuration ---
-const MAX_PLAYERS := 16       # Maximum number of simultaneously playing sounds
+const MAX_PLAYERS := 24       # Maximum number of simultaneously playing sounds
 const DEFAULT_BUS := "SFX"    # Audio bus name (must exist in Audio > Buses, or use "Master")
 
 # ---------------------------------------------

@@ -1,3 +1,4 @@
+# settings_menu.gd
 class_name SettingsMenu
 extends Control
 

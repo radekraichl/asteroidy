@@ -171,4 +171,4 @@ MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_tbeor")
-VBoxContainer/constants/separation = 12
+VBoxContainer/constants/separation = 6

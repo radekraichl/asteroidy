@@ -1,3 +1,4 @@
+# pause_menu.gd
 extends CanvasLayer
 class_name PauseMenu
 
@@ -19,6 +20,10 @@ var current_screen : Screen
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	settings_root.back_requested.connect(_on_settings_menu_back_requested)
+	print("vypis z _ready pause_menu.gd")
+	print("MAIN_MENU_SCENE: ", GameManager.MAIN_MENU_SCENE)
+	print("main menu scene resource path: ", GameManager.MAIN_MENU_SCENE.resource_path)
+
 
 func set_screen(screen : Screen):
 	current_screen = screen
@@ -35,12 +40,10 @@ func set_screen(screen : Screen):
 			GameManager.set_state(GameManager.GameState.PAUSED)
 			open_close_sfx.play()
 			show()
-
-			if fade_panel.get_state() == fade_panel.FadeState.CLEAR:
-				fade_panel.fade_in()
-
 			menu_root.show()
 			settings_root.hide()
+			if fade_panel.get_state() == fade_panel.FadeState.CLEAR:
+				fade_panel.fade_in()
 		Screen.SETTINGS:
 			menu_root.hide()
 			settings_root.show()
@@ -73,6 +76,10 @@ func _on_settings_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	SceneManager.change_scene_packed(GameManager.MAIN_MENU_SCENE)
 
 # Handle back action from settings menu
 func _on_settings_menu_back_requested() -> void:

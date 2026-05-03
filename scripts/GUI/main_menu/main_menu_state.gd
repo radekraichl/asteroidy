@@ -17,7 +17,6 @@ const MENU_CHANGE_FADE_DURATION = 0.15
 
 func _ready() -> void:
 	GameManager.set_state(GameManager.GameState.MAIN_MENU)
-	_fade_panel.set_clear()
 	_new_game_button.pressed.connect(_on_new_game_button_pressed)
 	_settings_menu_button.pressed.connect(_on_settings_button_pressed)
 	_exit_button.pressed.connect(_on_exit_button_pressed)
@@ -33,16 +32,17 @@ func _on_exit_button_pressed() -> void:
 
 func _on_settings_button_pressed() -> void:
 	SfxManager.play(open_close_sfx, -4.0, 1.2)
-	_fade_panel.fade_in(MENU_CHANGE_FADE_DURATION)
-	await _fade_panel.fade_finished
+	var tween = ControlFader.fade_out(_main_menu)
+	await tween.finished
 	transition_to(SettingsMenuState)
 
 # State Machine Methods
 func enter(_msg: Dictionary = {}):
-	if _fade_panel.get_state() == _fade_panel.FadeState.FADED:
-		_fade_panel.fade_out(MENU_CHANGE_FADE_DURATION)
+	_fade_panel.fade_out(MENU_CHANGE_FADE_DURATION)
 	_main_menu.visible = true
 	_settings_menu.visible = false
+	var tween = ControlFader.fade_in(_main_menu)
+	await tween.finished
 
 func exit() -> void:
 	_main_menu.visible = false

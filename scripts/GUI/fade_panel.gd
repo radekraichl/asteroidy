@@ -1,3 +1,4 @@
+# fade_panel.gd
 class_name FadePanel
 extends ColorRect
 
@@ -56,3 +57,4 @@ func fade_out(duration: float = -1.0) -> void:
 func _kill_tween() -> void:
 	if _tween and _tween.is_running():
 		_tween.kill()
+	_tween = null

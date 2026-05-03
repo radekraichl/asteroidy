@@ -1,5 +1,7 @@
+# game_manager.gd
 extends Node
 
+const MAIN_MENU_SCENE = preload("res://scenes/gui/main_menu.tscn")
 const GAME_SCENE = preload("res://scenes/game_scene.tscn")
 
 var DEBUG: bool = true
@@ -15,6 +17,11 @@ enum GameState {
 	GAME_OVER,
 	PAUSED
 }
+
+func _ready() -> void:
+	print("vypis z _ready game_manager.gd")
+	print("MAIN_MENU_SCENE: ", MAIN_MENU_SCENE)
+	print("main menu scene resource path: ", MAIN_MENU_SCENE.resource_path)
 
 func set_state(new_state : GameState):
 	if game_state == new_state:

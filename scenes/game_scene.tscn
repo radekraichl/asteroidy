@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cils70phfdhxb" path="res://scripts/gui/hud/health_bar.gd" id="10_ttvoq"]
 [ext_resource type="PackedScene" uid="uid://cajrad5otf2am" path="res://scenes/gui/pause_menu.tscn" id="11_rw4oa"]
 [ext_resource type="Script" uid="uid://va2o05eat8pu" path="res://scripts/gui/game_over.gd" id="12_r47aq"]
-[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/pause_menu_theme.tres" id="13_6irsn"]
+[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/gui_theme.tres" id="13_6irsn"]
 [ext_resource type="PackedScene" uid="uid://oqbv7cng5h6" path="res://scenes/ship/ship.tscn" id="14_gqftm"]
 [ext_resource type="Script" uid="uid://ec4ha37blckq" path="res://scripts/managers/spawn_manager.gd" id="15_5dk4p"]
 [ext_resource type="PackedScene" uid="uid://clww1ko6j4axm" path="res://scenes/asteroids/asteroid_big.tscn" id="16_bpk3j"]

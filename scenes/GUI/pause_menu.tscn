@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://td5o3in76l7v" path="res://scripts/gui/pause_menu.gd" id="1_a81cd"]
 [ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/gui/fade_panel.gd" id="2_11l0y"]
-[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/pause_menu_theme.tres" id="3_1oj2q"]
+[ext_resource type="Theme" uid="uid://cdqg5vqnwecyx" path="res://resources/gui_theme.tres" id="3_1oj2q"]
 [ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="4_11l0y"]
 [ext_resource type="PackedScene" uid="uid://b6vhu61s1w8ko" path="res://scenes/gui/settings_menu.tscn" id="4_a81cd"]
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/ui/ui_focus.ogg" id="5_1svuw"]
@@ -71,6 +71,10 @@ text = "Resume"
 layout_mode = 2
 text = "Settings"
 
+[node name="MainMenuButton" type="Button" parent="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=930315856]
+layout_mode = 2
+text = "Main menu"
+
 [node name="QuitButton" type="Button" parent="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=11646470]
 layout_mode = 2
 text = "Quit"
@@ -91,4 +95,5 @@ bus = &"SFX"
 
 [connection signal="pressed" from="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

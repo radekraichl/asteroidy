@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Asteroidy"
-run/main_scene="uid://puwngnwhi1x1"
+run/main_scene="uid://bstit0er0uc8b"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=200
 
@@ -22,8 +22,8 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 [autoload]
 
 Setup="*uid://ccpg3qup2jxtb"
-SettingsManager="*uid://ctt3ejimknnbp"
 GameManager="*uid://bijra1q08a2mq"
+SettingsManager="*uid://ctt3ejimknnbp"
 StatManager="*uid://bs4knau0k5p1t"
 SfxManager="*uid://bdh5xdswsryqh"
 LayerManager="*uid://8u5re4qcmech"
@@ -33,7 +33,6 @@ SceneManager="*uid://beghw4ov26gyo"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/mode=3
 window/stretch/mode="canvas_items"
 window/dpi/allow_hidpi=false
 
