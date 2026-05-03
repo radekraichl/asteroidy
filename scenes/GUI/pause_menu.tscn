@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="4_11l0y"]
 [ext_resource type="PackedScene" uid="uid://b6vhu61s1w8ko" path="res://scenes/gui/settings_menu.tscn" id="4_a81cd"]
 [ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/ui/ui_focus.ogg" id="5_1svuw"]
+[ext_resource type="PackedScene" uid="uid://26o1fhuqyira" path="res://scenes/gui/exit_dialog.tscn" id="6_1oj2q"]
 [ext_resource type="AudioStream" uid="uid://bg2w4eqs2s1x0" path="res://assets/sfx/ui/menu_open_close_sfx.ogg" id="6_vvthd"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1222910]
@@ -14,7 +15,6 @@ script = ExtResource("1_a81cd")
 
 [node name="FadePanel" type="ColorRect" parent="." unique_id=508466260]
 visible = false
-self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,6 +24,8 @@ color = Color(0.007843138, 0, 0.03137255, 0.78431374)
 script = ExtResource("2_11l0y")
 
 [node name="MenuRoot" type="Control" parent="." unique_id=810723726 node_paths=PackedStringArray("default_focus")]
+visible = false
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +80,10 @@ text = "Main menu"
 [node name="QuitButton" type="Button" parent="MenuRoot/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=11646470]
 layout_mode = 2
 text = "Quit"
+
+[node name="ExitDialog" parent="." unique_id=1864941565 instance=ExtResource("6_1oj2q")]
+unique_name_in_owner = true
+visible = false
 
 [node name="SettingsMenu" parent="." unique_id=497446991 instance=ExtResource("4_a81cd")]
 visible = false

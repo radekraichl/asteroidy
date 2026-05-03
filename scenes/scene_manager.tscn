@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://dqqw5cpwf1cd1" path="res://scripts/gui/fade_panel.gd" id="2_k8poj"]
 
 [node name="SceneManager" type="CanvasLayer" unique_id=1237977655]
-layer = 10
+layer = 100
 script = ExtResource("1_efx10")
 
 [node name="FadePanel" type="ColorRect" parent="." unique_id=380537813]
+z_index = 128
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

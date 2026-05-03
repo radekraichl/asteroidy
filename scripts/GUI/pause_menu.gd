@@ -1,6 +1,6 @@
 # pause_menu.gd
-extends CanvasLayer
 class_name PauseMenu
+extends CanvasLayer
 
 @onready var resume_button := %ResumeButton
 @onready var focus_sound: AudioStreamPlayer = $FocusSFX
@@ -8,6 +8,7 @@ class_name PauseMenu
 @onready var menu_root : Control = $MenuRoot
 @onready var settings_root : SettingsMenu = $SettingsMenu
 @onready var fade_panel : FadePanel = $FadePanel
+@onready var _exit_dialog: ExitDialog = %ExitDialog
 
 enum Screen {
 	NONE,
@@ -20,19 +21,7 @@ var current_screen : Screen
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	settings_root.back_requested.connect(_on_settings_menu_back_requested)
-
-	var timer: Timer = Timer.new()
-	add_child(timer)
-	timer.wait_time = 2.0
-	timer.one_shot = true
-	timer.start()
-	await timer.timeout
-
-
-	#print("vypis z _ready pause_menu.gd")
-	#print("MAIN_MENU_SCENE: ", GameManager.MAIN_MENU_SCENE)
-	#print("main menu scene resource path: ", GameManager.MAIN_MENU_SCENE.resource_path)
-
+	fade_panel.set_clear()
 
 func set_screen(screen : Screen):
 	current_screen = screen
@@ -87,8 +76,17 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 
 func _on_main_menu_button_pressed() -> void:
-	GameManager.set_state(GameManager.GameState.MAIN_MENU)
-	SceneManager.change_scene(GameManager.MAIN_MENU_SCENE)
+	open_close_sfx.play()
+	menu_root.hide()
+	_exit_dialog.show()
+	_exit_dialog.confirmed.connect(func():
+		_exit_dialog.hide_on_confirm = false
+		SceneManager.change_scene(GameManager.MAIN_MENU_SCENE)
+		GameManager.set_state(GameManager.GameState.MAIN_MENU))
+
+	_exit_dialog.canceled.connect(func():
+		open_close_sfx.play()
+		menu_root.show())
 
 # Handle back action from settings menu
 func _on_settings_menu_back_requested() -> void:

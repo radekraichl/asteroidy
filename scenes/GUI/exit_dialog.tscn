@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://26o1fhuqyira"]
+
+[ext_resource type="Theme" uid="uid://cb3ojakn22avj" path="res://resources/gui_dialog_theme.tres" id="1_jle74"]
+[ext_resource type="Script" uid="uid://evkstsmkh16f" path="res://scripts/gui/exit_dialog.gd" id="2_ga4rh"]
+[ext_resource type="AudioStream" uid="uid://b7s3wni4s4u5s" path="res://assets/sfx/ui/ui_focus.ogg" id="3_2tt6y"]
+[ext_resource type="Script" uid="uid://diggbb8hh00e7" path="res://scripts/gui/focus_behavior.gd" id="3_kowc6"]
+
+[node name="ExitDialog" type="CanvasLayer" unique_id=1864941565]
+layer = 20
+script = ExtResource("2_ga4rh")
+
+[node name="Control" type="Control" parent="." unique_id=473039803 node_paths=PackedStringArray("default_focus")]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_jle74")
+script = ExtResource("3_kowc6")
+default_focus = NodePath("PanelContainer/MarginContainer/VBoxContainer/GridContainer/CancelButton")
+force_default_focus = true
+focus_sfx = ExtResource("3_2tt6y")
+focus_sfx_pitch_scale = 1.45
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1318876446]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.0
+offset_right = 20.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=431520799]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=189681091]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=2119832455]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Exit Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=543449092]
+layout_mode = 2
+text = "Are you sure you want to exit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=2047293642]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=181532214]
+layout_mode = 2
+columns = 5
+
+[node name="SeparatorLeft" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=678174890]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="OKButton" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=18548605]
+unique_name_in_owner = true
+layout_mode = 2
+text = "OK"
+
+[node name="SeparatorCenter" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=623298396]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CancelButton" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1376293282]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+alignment = 2
+icon_alignment = 2
+
+[node name="SeparatorRight" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1663477765]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
