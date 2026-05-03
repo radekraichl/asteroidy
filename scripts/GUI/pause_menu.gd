@@ -20,9 +20,18 @@ var current_screen : Screen
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	settings_root.back_requested.connect(_on_settings_menu_back_requested)
-	print("vypis z _ready pause_menu.gd")
-	print("MAIN_MENU_SCENE: ", GameManager.MAIN_MENU_SCENE)
-	print("main menu scene resource path: ", GameManager.MAIN_MENU_SCENE.resource_path)
+
+	var timer: Timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 2.0
+	timer.one_shot = true
+	timer.start()
+	await timer.timeout
+
+
+	#print("vypis z _ready pause_menu.gd")
+	#print("MAIN_MENU_SCENE: ", GameManager.MAIN_MENU_SCENE)
+	#print("main menu scene resource path: ", GameManager.MAIN_MENU_SCENE.resource_path)
 
 
 func set_screen(screen : Screen):
@@ -78,8 +87,8 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 
 func _on_main_menu_button_pressed() -> void:
-	get_tree().paused = false
-	SceneManager.change_scene_packed(GameManager.MAIN_MENU_SCENE)
+	GameManager.set_state(GameManager.GameState.MAIN_MENU)
+	SceneManager.change_scene(GameManager.MAIN_MENU_SCENE)
 
 # Handle back action from settings menu
 func _on_settings_menu_back_requested() -> void:

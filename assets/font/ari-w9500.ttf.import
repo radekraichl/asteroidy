@@ -3,12 +3,11 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b34u0er7etohv"
-path="res://.godot/imported/ari-w9500.ttf-11cc7bd13453b23fcd11ade64269ea95.fontdata"
+valid=false
 
 [deps]
 
 source_file="res://assets/font/ari-w9500.ttf"
-dest_files=["res://.godot/imported/ari-w9500.ttf-11cc7bd13453b23fcd11ade64269ea95.fontdata"]
 
 [params]
 

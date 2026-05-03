@@ -22,7 +22,7 @@ func _ready() -> void:
 	_exit_button.pressed.connect(_on_exit_button_pressed)
 
 func _on_new_game_button_pressed() -> void:
-	SceneManager.change_scene_packed(GameManager.GAME_SCENE)
+	SceneManager.change_scene(GameManager.GAME_SCENE)
 	GameManager.set_state(GameManager.GameState.GAME)
 
 func _on_exit_button_pressed() -> void:

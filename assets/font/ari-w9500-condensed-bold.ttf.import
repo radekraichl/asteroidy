@@ -3,12 +3,11 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://c6bra2xa251rq"
-path="res://.godot/imported/ari-w9500-condensed-bold.ttf-fbdccc0ff2e43dbf723e371f5b06ea71.fontdata"
+valid=false
 
 [deps]
 
 source_file="res://assets/font/ari-w9500-condensed-bold.ttf"
-dest_files=["res://.godot/imported/ari-w9500-condensed-bold.ttf-fbdccc0ff2e43dbf723e371f5b06ea71.fontdata"]
 
 [params]
 

@@ -1,8 +1,8 @@
 # game_manager.gd
 extends Node
 
-const MAIN_MENU_SCENE = preload("res://scenes/gui/main_menu.tscn")
-const GAME_SCENE = preload("res://scenes/game_scene.tscn")
+const GAME_SCENE = "res://scenes/game_scene.tscn"
+const MAIN_MENU_SCENE = "res://scenes/gui/main_menu.tscn"
 
 var DEBUG: bool = true
 var ship: Ship = null
@@ -17,11 +17,6 @@ enum GameState {
 	GAME_OVER,
 	PAUSED
 }
-
-func _ready() -> void:
-	print("vypis z _ready game_manager.gd")
-	print("MAIN_MENU_SCENE: ", MAIN_MENU_SCENE)
-	print("main menu scene resource path: ", MAIN_MENU_SCENE.resource_path)
 
 func set_state(new_state : GameState):
 	if game_state == new_state:
@@ -39,18 +34,19 @@ func set_state(new_state : GameState):
 			enter_paused()
 
 	state_changed.emit(game_state)
+	# print("GameState: ", game_state)
 
 func enter_main_menu():
-	pass
+	get_tree().paused = false
 
 func enter_game():
 	get_tree().paused = false
 
-func enter_game_over():
-	game_over.emit()
-
 func enter_paused():
 	get_tree().paused = true
+
+func enter_game_over():
+	game_over.emit()
 
 func register_ship(_ship: Ship):
 	if ship:
